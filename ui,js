@@ -1,28 +1,28 @@
-(async () => {
-  try {
-    const res = await fetch("/api/me", { credentials: "include" });
+// Навигация + Paywall
+document.querySelectorAll(".nav-btn, #mainBuy").forEach(el => {
+  el.onclick = () => {
+    document.getElementById("paywall").classList.remove("hidden");
+  };
+});
 
-    if (!res.ok) {
-      document.body.dataset.role = "guest";
-      return;
-    }
+document.getElementById("closePaywall")?.onclick = () =>
+  document.getElementById("paywall").classList.add("hidden");
 
-    const data = await res.json();
+document.getElementById("unlockPremium")?.onclick = () => {
+  document.body.dataset.role = "premium";
+  document.getElementById("paywall").classList.add("hidden");
+};
 
-    if (!data || !data.user) {
-      document.body.dataset.role = "guest";
-      return;
-    }
-
-    const role = data.user.role || "user";
-    document.body.dataset.role = role;
-
-    if (role === "premium") {
-      document.body.classList.add("premium");
-    }
-
-  } catch (e) {
-    console.warn("No backend yet — guest mode");
-    document.body.dataset.role = "guest";
+// Anti-debug (мягко)
+setInterval(() => {
+  if (window.outerWidth - window.innerWidth > 160) {
+    console.clear();
   }
-})();
+}, 1200);
+
+// Anti-view-source (мягко)
+document.addEventListener("keydown", e => {
+  if (e.key === "F12" || (e.ctrlKey && e.key === "u")) {
+    e.preventDefault();
+  }
+});
