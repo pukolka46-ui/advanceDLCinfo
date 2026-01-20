@@ -1,18 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Register</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+<input id="email">
+<input id="password" type="password">
+<button onclick="reg()">Регистрация</button>
 
-<div class="form-box">
-  <h2>Создать аккаунт</h2>
-  <input id="email" placeholder="Email">
-  <input id="password" type="password" placeholder="Пароль">
-  <button class="btn" onclick="register()">Создать</button>
-</div>
-
-<script src="auth.js"></script>
-</body>
-</html>
+<script>
+async function reg() {
+  await fetch("/api/register", {
+    method: "POST",
+    body: JSON.stringify({
+      email: email.value,
+      password: password.value
+    })
+  });
+  location.href = "/login.html";
+}
+</script>
