@@ -1,17 +1,37 @@
-<input id="email">
-<input id="password" type="password">
-<button onclick="login()">Войти</button>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Кабинет — AdvanceLoaderV3</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="ui.js" defer></script>
+</head>
+<body>
 
-<script>
-async function login() {
-  const res = await fetch("/api/login", {
-    method: "POST",
-    body: JSON.stringify({
-      email: email.value,
-      password: password.value
-    })
-  });
+<nav>
+  <div class="logo">AdvanceLoaderV3</div>
+  <div class="nav-links">
+    <button class="nav-btn" data-go="/">Главная</button>
+    <button class="nav-btn" data-go="admin.html">Админ</button>
+  </div>
+</nav>
 
-  if (res.ok) location.href = "/cabinet.html";
-}
-</script>
+<main class="hero">
+  <div class="hero-box">
+    <span class="badge">USER PANEL</span>
+    <h1>Личный кабинет</h1>
+
+    <div class="stats">
+      <div class="stat">Статус: <b id="status"></b></div>
+      <div class="stat">Роль: <b id="role"></b></div>
+    </div>
+
+    <div class="hero-actions">
+      <button>Скачать клиент</button>
+      <button class="secondary" id="logout">Выйти</button>
+    </div>
+  </div>
+</main>
+
+</body>
+</html>
