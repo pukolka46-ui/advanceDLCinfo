@@ -1,14 +1,26 @@
-fetch("/api/me")
-  .then(r => r.json())
-  .then(({ user }) => {
-    if (!user) {
+(async () => {
+  try {
+    const res = await fetch("/api/me", { credentials: "include" });
+    const data = await res.json();
+
+    if (!data.user) {
       document.body.classList.add("guest");
       return;
     }
 
-    document.body.dataset.role = user.role;
+    const { role } = data.user;
 
-    if (user.role === "premium") {
+    document.body.dataset.role = role;
+
+    if (role === "premium") {
       document.body.classList.add("premium");
     }
-  });
+
+    if (role === "admin") {
+      console.log("Admin access granted");
+    }
+
+  } catch (e) {
+    console.error("Session check failed", e);
+  }
+})();
