@@ -1,16 +1,31 @@
-<input id="email">
-<input id="password" type="password">
-<button onclick="reg()">Регистрация</button>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Register</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth">
+  <form id="form">
+    <h2>Create account</h2>
+    <input type="email" placeholder="Email" required>
+    <input type="password" placeholder="Password" required>
+    <button>Register</button>
+    <p id="msg"></p>
+  </form>
 
 <script>
-async function reg() {
-  await fetch("/api/register", {
+form.onsubmit = async e => {
+  e.preventDefault();
+  const [email, password] = [...form.querySelectorAll("input")].map(i => i.value);
+
+  const r = await fetch("/api/register", {
     method: "POST",
-    body: JSON.stringify({
-      email: email.value,
-      password: password.value
-    })
+    body: JSON.stringify({ email, password })
   });
-  location.href = "/login.html";
-}
+
+  const j = await r.json();
+  msg.textContent = j.error || "Success!";
+};
 </script>
+</body>
+</html>
