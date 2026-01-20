@@ -1,24 +1,31 @@
-<link rel="stylesheet" href="style.css">
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Кабинет</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body onload="checkAuth()">
 
 <div class="card">
   <h2>Личный кабинет</h2>
 
-  <p>Пользователь: <b id="user"></b></p>
-  <p>Подписка: <b id="plan"></b></p>
+  <p id="userEmail"></p>
 
-  <button onclick="logout()">Выйти</button>
+  <div class="status">
+    Статус: <b>FREE</b>
+  </div>
+
+  <a class="btn primary" href="buy.html">Купить Premium</a>
+
+  <button class="btn secondary" onclick="logout()">Выйти</button>
 </div>
 
+<script src="auth.js"></script>
 <script>
-fetch("/api/me")
-  .then(r => r.ok ? r.json() : location.href="/login.html")
-  .then(d => {
-    user.textContent = d.login
-    plan.textContent = d.plan
-  })
-
-function logout() {
-  document.cookie = "session=; Max-Age=0"
-  location.href="/login.html"
-}
+  document.getElementById("userEmail").innerText =
+    "Вы вошли как: " + localStorage.getItem("user");
 </script>
+
+</body>
+</html>
