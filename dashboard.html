@@ -9,21 +9,11 @@
 
 <div class="card">
   <h2>Личный кабинет</h2>
-
-  <p id="userEmail"></p>
-
-  <div class="status">
-    Статус аккаунта: <b>FREE</b>
-  </div>
-
+  <p>Статус: <b>PREMIUM</b></p>
+  <p>Подписка активна</p>
   <button onclick="logout()">Выйти</button>
 </div>
 
 <script src="auth.js"></script>
-<script>
-  document.getElementById("userEmail").innerText =
-    "Вы вошли как: " + localStorage.getItem("user");
-</script>
-
 </body>
 </html>
