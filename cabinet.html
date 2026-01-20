@@ -1,0 +1,17 @@
+<input id="email">
+<input id="password" type="password">
+<button onclick="login()">Войти</button>
+
+<script>
+async function login() {
+  const res = await fetch("/api/login", {
+    method: "POST",
+    body: JSON.stringify({
+      email: email.value,
+      password: password.value
+    })
+  });
+
+  if (res.ok) location.href = "/cabinet.html";
+}
+</script>
