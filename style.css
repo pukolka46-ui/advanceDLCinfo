@@ -1,180 +1,131 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
-
-:root {
-  --bg-main: #060b12;
-  --bg-grad-1: #0b1a24;
-  --bg-grad-2: #04070c;
-
-  --accent: #2ee6c7;
-  --text-main: #e8edf2;
-  --text-muted: #8b98a5;
-}
-
+/* ===== RESET ===== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
+  font-family: Inter, system-ui, sans-serif;
 }
 
-body {
-  min-height: 100vh;
-  background:
-    radial-gradient(1200px 600px at 50% -200px, var(--bg-grad-1), transparent),
-    linear-gradient(180deg, var(--bg-main), var(--bg-grad-2));
-  color: var(--text-main);
+html, body {
+  height: 100%;
+  background: radial-gradient(1200px 600px at 50% -200px, #0ef2c910, transparent),
+              #050b0f;
+  color: #e8fdf8;
 }
 
-/* ===== HEADER ===== */
-header {
-  height: 80px;
-  padding: 0 80px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+/* ===== ROOT COLORS ===== */
+:root {
+  --accent: #00ffd0;
+  --accent-soft: #00ffd033;
+  --bg-card: rgba(255,255,255,0.03);
+  --border-soft: rgba(255,255,255,0.08);
 }
 
-.logo {
-  font-size: 15px;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-}
-
-.logo span {
+/* ===== TEXT ===== */
+h1 {
+  font-size: 56px;
+  font-weight: 700;
   color: var(--accent);
+  letter-spacing: -1px;
 }
 
-nav a {
-  margin-left: 32px;
-  font-size: 13px;
-  color: var(--text-muted);
-  text-decoration: none;
-  transition: 0.2s;
+p {
+  opacity: 0.75;
+  font-size: 14px;
+  line-height: 1.6;
 }
 
-nav a:hover {
-  color: var(--text-main);
-}
-
-/* ===== HERO ===== */
+/* ===== CENTER HERO ===== */
 .hero {
-  min-height: calc(100vh - 80px);
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.hero-box {
   text-align: center;
-}
-
-.hero-content {
-  max-width: 600px;
-  animation: fadeUp 0.8s ease forwards;
-}
-
-.hero h1 {
-  font-size: 42px;
-  font-weight: 500;
-  margin-bottom: 16px;
-}
-
-.hero h1 span {
-  color: var(--accent);
-}
-
-.hero p {
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--text-muted);
-  margin-bottom: 32px;
+  padding: 48px 64px;
+  border-radius: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  backdrop-filter: blur(20px);
+  animation: fadeUp 0.9s ease forwards;
 }
 
 /* ===== BUTTONS ===== */
-.actions {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-}
-
-.btn {
-  padding: 10px 22px;
-  font-size: 13px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.25s;
-}
-
-.btn-primary {
-  background: var(--accent);
-  color: #041014;
+button {
+  background: linear-gradient(135deg, var(--accent), #00c2ff);
   border: none;
+  color: #001b14;
+  padding: 12px 22px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease;
+  box-shadow: 0 0 0 transparent;
 }
 
-.btn-primary:hover {
-  opacity: 0.85;
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 24px var(--accent-soft);
 }
 
-.btn-secondary {
+button.secondary {
   background: transparent;
-  border: 1px solid rgba(255,255,255,0.12);
-  color: var(--text-main);
-}
-
-.btn-secondary:hover {
-  border-color: var(--accent);
   color: var(--accent);
+  border: 1px solid var(--border-soft);
 }
 
-/* ===== AUTH CARD ===== */
-.auth {
-  min-height: calc(100vh - 80px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.auth-card {
-  width: 360px;
-  padding: 32px;
-  background: rgba(255,255,255,0.02);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 14px;
-  animation: fadeUp 0.6s ease forwards;
-}
-
-.auth-card h2 {
-  font-size: 22px;
-  font-weight: 500;
-  margin-bottom: 8px;
-}
-
-.auth-card p {
-  font-size: 13px;
-  color: var(--text-muted);
-  margin-bottom: 20px;
-}
-
-.auth-card input {
+/* ===== NAV ===== */
+nav {
+  position: fixed;
+  top: 0;
   width: 100%;
-  margin-bottom: 12px;
-  padding: 10px 12px;
-  background: transparent;
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 8px;
-  color: var(--text-main);
+  padding: 18px 32px;
+  display: flex;
+  justify-content: space-between;
+  background: linear-gradient(#050b0fdd, transparent);
 }
 
-.auth-card input:focus {
-  outline: none;
-  border-color: var(--accent);
+nav a {
+  color: #9ee7db;
+  margin-left: 18px;
+  text-decoration: none;
+  font-size: 13px;
+  opacity: .7;
 }
 
-/* ===== ANIM ===== */
+nav a:hover {
+  opacity: 1;
+}
+
+/* ===== ROLE UI ===== */
+body[data-role="admin"]::after {
+  content: "ADMIN MODE";
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 11px;
+  opacity: 0.4;
+}
+
+.premium-only {
+  display: none;
+}
+
+body.premium .premium-only {
+  display: block;
+}
+
+/* ===== ANIMATIONS ===== */
 @keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
   }
 }
