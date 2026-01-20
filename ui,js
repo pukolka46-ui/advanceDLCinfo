@@ -1,32 +1,36 @@
-// Paywall open
-document.querySelectorAll(".nav-btn, #mainBuy, .price-card button").forEach(el => {
-  el.onclick = () => {
-    if (el.disabled) return;
-    document.getElementById("paywall").classList.remove("hidden");
-  };
+let role = localStorage.getItem("role") || "guest";
+
+document.querySelectorAll("[data-go]").forEach(b=>{
+  b.onclick=()=>location.href=b.dataset.go;
 });
 
-// Close modal
-document.getElementById("closePaywall").onclick = () => {
-  document.getElementById("paywall").classList.add("hidden");
+const paywall=document.getElementById("paywall");
+
+document.getElementById("openPaywall")?.onclick=()=>paywall.classList.remove("hidden");
+document.querySelectorAll(".buy").forEach(b=>b.onclick=()=>paywall.classList.remove("hidden"));
+document.getElementById("closePaywall")?.onclick=()=>paywall.classList.add("hidden");
+
+document.getElementById("unlock")?.onclick=()=>{
+  localStorage.setItem("role","premium");
+  location.href="cabinet.html";
 };
 
-// Premium unlock (UI)
-document.getElementById("unlockPremium").onclick = () => {
-  document.body.dataset.role = "premium";
-  document.getElementById("paywall").classList.add("hidden");
+if(location.pathname.includes("cabinet")){
+  if(role==="guest") location.href="/";
+  document.getElementById("role").textContent=role;
+  document.getElementById("status").textContent="Активен";
+}
+
+if(location.pathname.includes("admin") && role!=="admin"){
+  location.href="/";
+}
+
+function setRole(r){
+  localStorage.setItem("role",r);
+  alert("Роль изменена: "+r);
+}
+
+document.getElementById("logout")?.onclick=()=>{
+  localStorage.setItem("role","guest");
+  location.href="/";
 };
-
-// Anti-debug (мягкий)
-setInterval(() => {
-  if (window.outerWidth - window.innerWidth > 160) {
-    console.clear();
-  }
-}, 1200);
-
-// Anti-view-source
-document.addEventListener("keydown", e => {
-  if (e.key === "F12" || (e.ctrlKey && e.key === "u")) {
-    e.preventDefault();
-  }
-});
