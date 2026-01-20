@@ -6,36 +6,64 @@
   font-family: Inter, system-ui, sans-serif;
 }
 
+/* ===== COLORS ===== */
+:root {
+  --bg-main: #050b1a;
+  --bg-card: rgba(255,255,255,0.04);
+  --border-soft: rgba(255,255,255,0.08);
+  --accent: #4cc9f0;
+  --accent-soft: rgba(76,201,240,0.25);
+}
+
+/* ===== BODY ===== */
 html, body {
   height: 100%;
-  background: radial-gradient(1200px 600px at 50% -200px, #0ef2c910, transparent),
-              #050b0f;
-  color: #e8fdf8;
+  background:
+    radial-gradient(900px 400px at 50% -150px, #4cc9f025, transparent),
+    var(--bg-main);
+  color: #e8f2ff;
 }
 
-/* ===== ROOT COLORS ===== */
-:root {
-  --accent: #00ffd0;
-  --accent-soft: #00ffd033;
-  --bg-card: rgba(255,255,255,0.03);
-  --border-soft: rgba(255,255,255,0.08);
+/* ===== NAV ===== */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 18px 36px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(#050b1add, transparent);
+  z-index: 10;
 }
 
-/* ===== TEXT ===== */
-h1 {
-  font-size: 56px;
-  font-weight: 700;
+.logo {
+  font-weight: 600;
+  letter-spacing: .5px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 14px;
+}
+
+.nav-btn {
+  background: transparent;
+  border: 1px solid var(--border-soft);
+  color: #b7dfff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+
+.nav-btn:hover {
+  background: var(--accent-soft);
   color: var(--accent);
-  letter-spacing: -1px;
 }
 
-p {
-  opacity: 0.75;
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-/* ===== CENTER HERO ===== */
+/* ===== HERO ===== */
 .hero {
   height: 100vh;
   display: flex;
@@ -45,30 +73,58 @@ p {
 
 .hero-box {
   text-align: center;
-  padding: 48px 64px;
-  border-radius: 20px;
+  padding: 56px 72px;
+  border-radius: 22px;
   background: var(--bg-card);
   border: 1px solid var(--border-soft);
-  backdrop-filter: blur(20px);
-  animation: fadeUp 0.9s ease forwards;
+  backdrop-filter: blur(18px);
+  animation: fadeUp .8s ease forwards;
+  max-width: 520px;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--accent);
+  margin-bottom: 14px;
+  opacity: .8;
+}
+
+h1 {
+  font-size: 54px;
+  margin-bottom: 14px;
+  color: var(--accent);
+}
+
+p {
+  font-size: 14px;
+  opacity: .75;
+  line-height: 1.6;
 }
 
 /* ===== BUTTONS ===== */
+.hero-actions {
+  margin-top: 28px;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
 button {
-  background: linear-gradient(135deg, var(--accent), #00c2ff);
+  background: linear-gradient(135deg, var(--accent), #4361ee);
   border: none;
-  color: #001b14;
+  color: #020617;
   padding: 12px 22px;
   border-radius: 10px;
   font-weight: 600;
   cursor: pointer;
   transition: transform .15s ease, box-shadow .15s ease;
-  box-shadow: 0 0 0 transparent;
 }
 
 button:hover {
   transform: translateY(-1px);
-  box-shadow: 0 0 24px var(--accent-soft);
+  box-shadow: 0 0 28px var(--accent-soft);
 }
 
 button.secondary {
@@ -77,55 +133,48 @@ button.secondary {
   border: 1px solid var(--border-soft);
 }
 
-/* ===== NAV ===== */
-nav {
+/* ===== MODAL ===== */
+.modal {
   position: fixed;
-  top: 0;
-  width: 100%;
-  padding: 18px 32px;
+  inset: 0;
+  background: rgba(0,0,0,.6);
   display: flex;
-  justify-content: space-between;
-  background: linear-gradient(#050b0fdd, transparent);
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
 }
 
-nav a {
-  color: #9ee7db;
-  margin-left: 18px;
-  text-decoration: none;
-  font-size: 13px;
-  opacity: .7;
+.modal-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  padding: 34px;
+  border-radius: 18px;
+  width: 340px;
+  text-align: center;
+  animation: fadeUp .25s ease;
 }
 
-nav a:hover {
-  opacity: 1;
-}
-
-/* ===== ROLE UI ===== */
-body[data-role="admin"]::after {
-  content: "ADMIN MODE";
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  font-size: 11px;
-  opacity: 0.4;
-}
-
-.premium-only {
+.hidden {
   display: none;
 }
 
-body.premium .premium-only {
-  display: block;
+/* ===== ROLES ===== */
+body[data-role="premium"] .badge::after {
+  content: " • PREMIUM";
+  color: #a5ffd6;
 }
 
-/* ===== ANIMATIONS ===== */
+body[data-role="admin"]::after {
+  content: "ADMIN MODE";
+  position: fixed;
+  bottom: 18px;
+  right: 18px;
+  font-size: 11px;
+  opacity: .4;
+}
+
+/* ===== ANIMATION ===== */
 @keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
 }
