@@ -1,60 +1,34 @@
 export default {
-  async fetch(req, env) {
-    const url = new URL(req.url)
+  async fetch(request, env) {
+    const url = new URL(request.url);
 
-    // РЕГИСТРАЦИЯ
-    if (url.pathname === "/api/register" && req.method === "POST") {
-      const { login, password } = await req.json()
+    if (url.pathname === "/api/register" && request.method === "POST") {
+      try {
+        const { email, password } = await request.json();
 
-      if (await env.USERS.get(login)) {
-        return new Response("User exists", { status: 409 })
-      }
-
-      await env.USERS.put(login, JSON.stringify({
-        password,
-        plan: "none"
-      }))
-
-      return new Response("OK")
-    }
-
-    // ЛОГИН
-    if (url.pathname === "/api/login" && req.method === "POST") {
-      const { login, password } = await req.json()
-      const user = await env.USERS.get(login, { type: "json" })
-
-      if (!user || user.password !== password) {
-        return new Response("Invalid", { status: 401 })
-      }
-
-      const token = crypto.randomUUID()
-      await env.SESSIONS.put(token, login, { expirationTtl: 86400 })
-
-      return new Response("OK", {
-        headers: {
-          "Set-Cookie": `session=${token}; Path=/; HttpOnly`
+        if (!email || !password) {
+          return new Response("Missing data", { status: 400 });
         }
-      })
+
+        const hashed = await crypto.subtle.digest(
+          "SHA-256",
+          new TextEncoder().encode(password)
+        );
+
+        const hashHex = [...new Uint8Array(hashed)]
+          .map(b => b.toString(16).padStart(2, "0"))
+          .join("");
+
+        await env.DB.prepare(
+          "INSERT INTO users (email, password) VALUES (?, ?)"
+        ).bind(email, hashHex).run();
+
+        return new Response("OK");
+      } catch (e) {
+        return new Response("Registration error", { status: 500 });
+      }
     }
 
-    // ПРОВЕРКА СЕССИИ
-    if (url.pathname === "/api/me") {
-      const cookie = req.headers.get("Cookie") || ""
-      const token = cookie.split("session=")[1]
-
-      if (!token) return new Response("No auth", { status: 401 })
-
-      const login = await env.SESSIONS.get(token)
-      if (!login) return new Response("Expired", { status: 401 })
-
-      const user = await env.USERS.get(login, { type: "json" })
-
-      return new Response(JSON.stringify({
-        login,
-        plan: user.plan
-      }), { headers: { "Content-Type": "application/json" } })
-    }
-
-    return new Response("Not found", { status: 404 })
+    return new Response("Not found", { status: 404 });
   }
-}
+};
