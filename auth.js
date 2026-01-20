@@ -1,38 +1,35 @@
 function login() {
   const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+  const pass = document.getElementById("password").value;
 
-  if (!email || !password) {
-    alert("Заполните все поля");
+  if (!email || !pass) {
+    alert("Заполни все поля");
     return;
   }
 
-  localStorage.setItem("user", email);  
-  window.location.href = "dashboard.html";
-}
-
-function register() {
-  const email = document.getElementById("regEmail").value;
-  const password = document.getElementById("regPassword").value;
-
-  if (!email || !password) {
-    alert("Заполните все поля");
-    return;
-  }
-
-  localStorage.setItem("user", email);
-  window.location.href = "dashboard.html";
+  // ❗ ВРЕМЕННО: проверка premium
+  fetch("/api/login", {
+    method: "POST",
+    body: JSON.stringify({ email, pass })
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (data.premium) {
+        localStorage.setItem("user", email);
+        window.location.href = "dashboard.html";
+      } else {
+        window.location.href = "buy.html";
+      }
+    });
 }
 
 function logout() {
-  localStorage.removeItem("user");
-  window.location.href = "index.html";
+  localStorage.clear();
+  location.href = "index.html";
 }
 
 function checkAuth() {
-  const user = localStorage.getItem("user");
-  if (!user) {
-    window.location.href = "login.html";
+  if (!localStorage.getItem("user")) {
+    location.href = "login.html";
   }
 }
-  
