@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>AdvanceLoaderV3</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
   <script src="ui.js" defer></script>
 </head>
@@ -12,9 +12,8 @@
 <nav>
   <div class="logo">AdvanceLoaderV3</div>
   <div class="nav-links">
-    <button class="nav-btn" data-go="/">Проект</button>
-    <button class="nav-btn" data-go="cabinet.html">Кабинет</button>
-    <button class="nav-btn" data-go="admin.html">Админ</button>
+    <button data-go="/">Проект</button>
+    <button data-go="cabinet.html">Кабинет</button>
   </div>
 </nav>
 
@@ -22,56 +21,52 @@
   <div class="hero-box">
     <span class="badge">PRIVATE ACCESS</span>
     <h1>AdvanceLoaderV3</h1>
-    <p>Закрытый клиент. Премиальный доступ. Контроль.</p>
+    <p>Закрытый премиум-клиент</p>
 
     <div class="hero-actions">
-      <button id="buyBtn">Получить доступ</button>
-      <button class="secondary">Документация</button>
+      <button id="openPaywall">Купить доступ</button>
+      <button class="secondary" id="scrollPricing">Тарифы</button>
     </div>
   </div>
 </main>
 
-<section class="pricing">
-  <h2 class="section-title">Тарифы</h2>
-  <div class="pricing-grid">
+<section class="pricing" id="pricing">
+  <h2>Тарифы</h2>
 
+  <div class="pricing-grid">
     <div class="price-card">
       <h3>30 Days</h3>
       <p class="price">$5</p>
-      <span>Базовый доступ</span>
-      <button class="buy">Купить</button>
+      <button class="buy" data-plan="30">Купить</button>
     </div>
 
     <div class="price-card">
       <h3>45 Days</h3>
       <p class="price">$7</p>
-      <span>Расширенный доступ</span>
-      <button class="buy">Купить</button>
+      <button class="buy" data-plan="45">Купить</button>
     </div>
 
     <div class="price-card highlight">
       <h3>60 Days</h3>
       <p class="price">$9</p>
-      <span>Максимум возможностей</span>
-      <button class="buy">Купить</button>
+      <button class="buy" data-plan="60">Купить</button>
     </div>
 
     <div class="price-card beta">
       <h3>BETA</h3>
       <p class="price">Invite</p>
-      <span>Закрытый тест</span>
       <button disabled>Закрыто</button>
     </div>
-
   </div>
 </section>
 
 <!-- PAYWALL -->
 <div id="paywall" class="modal hidden">
   <div class="modal-box">
-    <h2>Premium доступ</h2>
-    <p>Открывает кабинет и загрузки</p>
-    <button id="unlockPremium">Активировать</button>
+    <h2>Оплата</h2>
+    <p id="payInfo">Выберите тариф</p>
+
+    <button id="payMock">Оплатить</button>
     <button class="secondary" id="closePaywall">Отмена</button>
   </div>
 </div>
