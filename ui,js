@@ -1,26 +1,28 @@
 (async () => {
   try {
     const res = await fetch("/api/me", { credentials: "include" });
-    const data = await res.json();
 
-    if (!data.user) {
-      document.body.classList.add("guest");
+    if (!res.ok) {
+      document.body.dataset.role = "guest";
       return;
     }
 
-    const { role } = data.user;
+    const data = await res.json();
 
+    if (!data || !data.user) {
+      document.body.dataset.role = "guest";
+      return;
+    }
+
+    const role = data.user.role || "user";
     document.body.dataset.role = role;
 
     if (role === "premium") {
       document.body.classList.add("premium");
     }
 
-    if (role === "admin") {
-      console.log("Admin access granted");
-    }
-
   } catch (e) {
-    console.error("Session check failed", e);
+    console.warn("No backend yet — guest mode");
+    document.body.dataset.role = "guest";
   }
 })();
