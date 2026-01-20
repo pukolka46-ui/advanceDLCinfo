@@ -2,5 +2,7 @@ name = "advancedlc"
 main = "worker.js"
 compatibility_date = "2024-01-01"
 
-[vars]
-ENV = "production"
+[[d1_databases]]
+binding = "DB"
+database_name = "users"
+database_id = "fffd9dba60b99c4dcf68f5c9e270a22c"
