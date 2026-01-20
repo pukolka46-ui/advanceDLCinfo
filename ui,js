@@ -1,26 +1,30 @@
-// Навигация + Paywall
-document.querySelectorAll(".nav-btn, #mainBuy").forEach(el => {
+// Paywall open
+document.querySelectorAll(".nav-btn, #mainBuy, .price-card button").forEach(el => {
   el.onclick = () => {
+    if (el.disabled) return;
     document.getElementById("paywall").classList.remove("hidden");
   };
 });
 
-document.getElementById("closePaywall")?.onclick = () =>
+// Close modal
+document.getElementById("closePaywall").onclick = () => {
   document.getElementById("paywall").classList.add("hidden");
+};
 
-document.getElementById("unlockPremium")?.onclick = () => {
+// Premium unlock (UI)
+document.getElementById("unlockPremium").onclick = () => {
   document.body.dataset.role = "premium";
   document.getElementById("paywall").classList.add("hidden");
 };
 
-// Anti-debug (мягко)
+// Anti-debug (мягкий)
 setInterval(() => {
   if (window.outerWidth - window.innerWidth > 160) {
     console.clear();
   }
 }, 1200);
 
-// Anti-view-source (мягко)
+// Anti-view-source
 document.addEventListener("keydown", e => {
   if (e.key === "F12" || (e.ctrlKey && e.key === "u")) {
     e.preventDefault();
