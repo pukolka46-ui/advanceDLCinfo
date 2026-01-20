@@ -1,36 +1,67 @@
-let role = localStorage.getItem("role") || "guest";
-
+// NAVIGATION
 document.querySelectorAll("[data-go]").forEach(b=>{
-  b.onclick=()=>location.href=b.dataset.go;
+  b.onclick = () => location.href = b.dataset.go;
 });
 
-const paywall=document.getElementById("paywall");
+// SCROLL
+document.getElementById("scrollPricing")?.onclick = () =>
+  document.getElementById("pricing").scrollIntoView({behavior:"smooth"});
 
-document.getElementById("openPaywall")?.onclick=()=>paywall.classList.remove("hidden");
-document.querySelectorAll(".buy").forEach(b=>b.onclick=()=>paywall.classList.remove("hidden"));
-document.getElementById("closePaywall")?.onclick=()=>paywall.classList.add("hidden");
+// ROLE / LICENSE STORAGE
+let user = JSON.parse(localStorage.getItem("user") || "{}");
 
-document.getElementById("unlock")?.onclick=()=>{
-  localStorage.setItem("role","premium");
-  location.href="cabinet.html";
+if(!user.role) {
+  user = {
+    role: "guest",
+    license: null,
+    hwid: null
+  };
+  localStorage.setItem("user", JSON.stringify(user));
+}
+
+// PAYWALL
+const paywall = document.getElementById("paywall");
+let selectedPlan = null;
+
+document.getElementById("openPaywall")?.onclick =
+  () => paywall.classList.remove("hidden");
+
+document.getElementById("closePaywall")?.onclick =
+  () => paywall.classList.add("hidden");
+
+document.querySelectorAll(".buy").forEach(b=>{
+  b.onclick = ()=>{
+    selectedPlan = b.dataset.plan;
+    document.getElementById("payInfo").textContent =
+      `Тариф: ${selectedPlan} дней`;
+    paywall.classList.remove("hidden");
+  };
+});
+
+// MOCK PAYMENT
+document.getElementById("payMock")?.onclick = ()=>{
+  user.role = "premium";
+  user.license = "ADV-" + Math.random().toString(36).slice(2,10).toUpperCase();
+  user.hwid = crypto.randomUUID();
+  localStorage.setItem("user", JSON.stringify(user));
+  location.href = "cabinet.html";
 };
 
-if(location.pathname.includes("cabinet")){
-  if(role==="guest") location.href="/";
-  document.getElementById("role").textContent=role;
-  document.getElementById("status").textContent="Активен";
+// CABINET PROTECTION
+if(location.pathname.includes("cabinet")) {
+  if(user.role !== "premium") location.href = "/";
+  document.getElementById("role").textContent = user.role;
+  document.getElementById("license").textContent = user.license;
+  document.getElementById("hwid").textContent = user.hwid;
 }
 
-if(location.pathname.includes("admin") && role!=="admin"){
-  location.href="/";
-}
+// DOWNLOAD
+document.getElementById("download")?.onclick = ()=>{
+  alert("Загрузка клиента (будет привязка к лицензии)");
+};
 
-function setRole(r){
-  localStorage.setItem("role",r);
-  alert("Роль изменена: "+r);
-}
-
-document.getElementById("logout")?.onclick=()=>{
-  localStorage.setItem("role","guest");
-  location.href="/";
+// LOGOUT
+document.getElementById("logout")?.onclick = ()=>{
+  localStorage.clear();
+  location.href = "/";
 };
