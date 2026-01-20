@@ -1,35 +1,43 @@
-function login() {
+const API = "/api";
+
+async function login() {
   const email = document.getElementById("email").value;
-  const pass = document.getElementById("password").value;
+  const password = document.getElementById("password").value;
 
-  if (!email || !pass) {
-    alert("Заполни все поля");
-    return;
-  }
-
-  // ❗ ВРЕМЕННО: проверка premium
-  fetch("/api/login", {
+  const r = await fetch(API + "/login", {
     method: "POST",
-    body: JSON.stringify({ email, pass })
-  })
-    .then(res => res.json())
-    .then(data => {
-      if (data.premium) {
-        localStorage.setItem("user", email);
-        window.location.href = "dashboard.html";
-      } else {
-        window.location.href = "buy.html";
-      }
-    });
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password })
+  });
+
+  if (!r.ok) return alert("Ошибка входа");
+
+  const data = await r.json();
+  localStorage.setItem("token", data.token);
+  location.href = "dashboard.html";
 }
 
-function logout() {
-  localStorage.clear();
-  location.href = "index.html";
+async function register() {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  const r = await fetch(API + "/register", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password })
+  });
+
+  if (!r.ok) return alert("Ошибка регистрации");
+  location.href = "login.html";
 }
 
 function checkAuth() {
-  if (!localStorage.getItem("user")) {
+  if (!localStorage.getItem("token")) {
     location.href = "login.html";
   }
+}
+
+function logout() {
+  localStorage.removeItem("token");
+  location.href = "index.html";
 }
