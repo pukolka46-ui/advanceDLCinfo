@@ -1,7 +1,24 @@
-<h2>Личный кабинет</h2>
+<link rel="stylesheet" href="style.css">
 
-<p>Логин: <span id="user"></span></p>
-<p>Подписка: <span id="plan"></span></p>
-<p>Действует до: <span id="expires"></span></p>
+<div class="card">
+  <h2>Личный кабинет</h2>
 
-<a href="/buy.html">Продлить</a>
+  <p>Пользователь: <b id="user"></b></p>
+  <p>Подписка: <b id="plan"></b></p>
+
+  <button onclick="logout()">Выйти</button>
+</div>
+
+<script>
+fetch("/api/me")
+  .then(r => r.ok ? r.json() : location.href="/login.html")
+  .then(d => {
+    user.textContent = d.login
+    plan.textContent = d.plan
+  })
+
+function logout() {
+  document.cookie = "session=; Max-Age=0"
+  location.href="/login.html"
+}
+</script>
