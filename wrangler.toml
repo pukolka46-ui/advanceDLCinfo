@@ -1,8 +1,8 @@
-name = "advancesitev3"
+name = "advancedlcv3"
 main = "worker/index.js"
-compatibility_date = "2024-12-01"
+compatibility_date = "2025-01-01"
 
 [[d1_databases]]
 binding = "DB"
-database_name = "users"
-database_id = "fffd9dba60b99c4dcf68f5c9e270a22c"
+database_name = "advance_users"
+database_id = "e88e39d2-1485-48a1-ab4c-50a47df0645e"
