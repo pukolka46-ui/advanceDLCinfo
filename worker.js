@@ -2,47 +2,46 @@ export default {
   async fetch(req, env) {
     const url = new URL(req.url);
 
-    if (url.pathname === "/api/register" && req.method === "POST") {
-      const { email, password } = await req.json();
+    if (req.method === "OPTIONS") return cors();
 
-      if (!email || !password) {
-        return new Response("Invalid data", { status: 400 });
-      }
+    if (url.pathname === "/api/register") {
+      const {email, password} = await req.json();
+      const ex = await env.DB.prepare(
+        "SELECT id FROM users WHERE email=?"
+      ).bind(email).first();
 
-      try {
-        await env.DB.prepare(
-          "INSERT INTO users (email, password) VALUES (?, ?)"
-        ).bind(email, password).run();
+      if (ex) return json({error:"Уже есть"},400);
 
-        return new Response(
-          JSON.stringify({ ok: true }),
-          { headers: { "Content-Type": "application/json" } }
-        );
-      } catch (e) {
-        return new Response(
-          JSON.stringify({ error: "User exists" }),
-          { status: 409, headers: { "Content-Type": "application/json" } }
-        );
-      }
+      await env.DB.prepare(
+        "INSERT INTO users (email,password) VALUES (?,?)"
+      ).bind(email,password).run();
+
+      return json({success:true});
     }
 
-    if (url.pathname === "/api/login" && req.method === "POST") {
-      const { email, password } = await req.json();
-
-      const user = await env.DB.prepare(
+    if (url.pathname === "/api/login") {
+      const {email,password} = await req.json();
+      const u = await env.DB.prepare(
         "SELECT * FROM users WHERE email=? AND password=?"
-      ).bind(email, password).first();
+      ).bind(email,password).first();
 
-      if (!user) {
-        return new Response("Unauthorized", { status: 401 });
-      }
-
-      return new Response(
-        JSON.stringify({ token: crypto.randomUUID() }),
-        { headers: { "Content-Type": "application/json" } }
-      );
+      if (!u) return json({error:"Неверно"},401);
+      return json({success:true});
     }
 
-    return new Response("OK");
+    return new Response("404");
   }
 };
+
+const cors = ()=>new Response(null,{headers:{
+  "Access-Control-Allow-Origin":"*",
+  "Access-Control-Allow-Headers":"Content-Type"
+}});
+
+const json=(d,s=200)=>new Response(JSON.stringify(d),{
+  status:s,
+  headers:{
+    "Content-Type":"application/json",
+    "Access-Control-Allow-Origin":"*"
+  }
+});
