@@ -1,43 +1,31 @@
-const API = "/api";
+async function register() {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  const r = await fetch("/api/register", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({email, password})
+  });
+
+  const d = await r.json();
+  if (d.success) location.href = "login.html";
+  else alert(d.error);
+}
 
 async function login() {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
-  const r = await fetch(API + "/login", {
+  const r = await fetch("/api/login", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, password })
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({email, password})
   });
 
-  if (!r.ok) return alert("Ошибка входа");
-
-  const data = await r.json();
-  localStorage.setItem("token", data.token);
-  location.href = "dashboard.html";
-}
-
-async function register() {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-
-  const r = await fetch(API + "/register", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, password })
-  });
-
-  if (!r.ok) return alert("Ошибка регистрации");
-  location.href = "login.html";
-}
-
-function checkAuth() {
-  if (!localStorage.getItem("token")) {
-    location.href = "login.html";
-  }
-}
-
-function logout() {
-  localStorage.removeItem("token");
-  location.href = "index.html";
+  const d = await r.json();
+  if (d.success) {
+    localStorage.setItem("auth", "1");
+    location.href = "dashboard.html";
+  } else alert(d.error);
 }
