@@ -1,37 +1,31 @@
 document.addEventListener('DOMContentLoaded', ()=>{
 
-  // Верхние кнопки
   document.getElementById('supportBtn').onclick = ()=>alert('Поддержка скоро!');
   document.getElementById('aboutBtn').onclick = ()=>document.getElementById('about').scrollIntoView({behavior:'smooth'});
   document.getElementById('buyBtn').onclick = ()=>document.getElementById('plans').scrollIntoView({behavior:'smooth'});
   document.getElementById('cabinetBtn').onclick = ()=>alert('Личный кабинет пока недоступен.');
-  
-  // Смена темы
+
   let themeIndex = 4;
   document.getElementById('themeBtn').onclick = ()=>{
     themeIndex++;
     if(themeIndex>4) themeIndex=1;
-    document.body.className = `theme${themeIndex}`;
+    document.body.className=`theme${themeIndex}`;
   }
 
-  // Typewriter
   const heading = document.getElementById('heading');
   const text = heading.textContent;
-  heading.textContent = '';
-  let i = 0;
+  heading.textContent='';
+  let i=0;
   function typeWriter(){
     if(i<text.length){heading.textContent+=text[i];i++;setTimeout(typeWriter,50);}
   }
   typeWriter();
 
-  // Карточки тарифов
   document.querySelectorAll('.buy-btn').forEach(btn=>{
     btn.onclick = ()=>alert('Выбран тариф!');
   });
 
-  // Back-to-top
   const topBtn = document.getElementById('topBtn');
   topBtn.onclick = ()=>window.scrollTo({top:0,behavior:'smooth'});
-  window.onscroll = ()=>{topBtn.style.display = window.scrollY>200?'block':'none';}
-
+  window.onscroll = ()=>topBtn.style.display=window.scrollY>200?'block':'none';
 });
