@@ -3,51 +3,132 @@
 <head>
   <meta charset="UTF-8">
   <title>AdvanceLoaderV3</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<header>
-  <div class="container header-inner">
-    <button id="supportBtn" class="btn ghost">
-      Поддержка <span>Soon</span>
-    </button>
+<!-- HEADER -->
+<header class="header">
+  <div class="nav-left">
+    <button id="supportBtn" class="btn ghost">Поддержка <span class="soon">Soon</span></button>
+  </div>
 
-    <nav>
-      <a class="btn" href="about.html">О нас</a>
-      <a class="btn" href="pricing.html">Купить</a>
-      <a class="btn" href="faq.html">FAQ</a>
-    </nav>
+  <div class="nav-center">
+    <button class="btn" data-scroll="about">О нас</button>
+    <button class="btn" data-scroll="plans">Купить</button>
+    <button class="btn" data-scroll="faq">FAQ</button>
+  </div>
 
+  <div class="nav-right">
+    <button class="btn ghost">Личный кабинет</button>
     <button id="themeBtn" class="btn">Сменить тему</button>
   </div>
 </header>
 
-<section>
-  <div class="container">
-    <h1>AdvanceLoaderV3 🚀</h1>
-    <p>Современная платформа управления DLC</p>
-  </div>
+<!-- HERO -->
+<section class="hero reveal">
+  <h1>AdvanceLoaderV3 🚀</h1>
+  <p>Современная платформа управления DLC</p>
+  <button class="btn big" data-scroll="plans">Выбрать тариф</button>
 </section>
 
-<section>
-  <div class="container">
-    <h2>Преимущества</h2>
-    <div class="stats">
-      <div><span>95/100</span><p>Обходы</p></div>
-      <div><span>0</span><p>Запусков</p></div>
-      <div><span>0</span><p>Покупок</p></div>
-      <div><span>0</span><p>Нам доверяют</p></div>
+<!-- ABOUT -->
+<section id="about" class="section reveal">
+  <h2>О нас</h2>
+  <p>
+    AdvanceDLC — это экосистема инструментов: AdvanceLoader, AdvanceDLC, AdvanceVisuals.
+    Мы создаём мощные решения и постоянно развиваемся.
+  </p>
+</section>
+
+<!-- PLANS -->
+<section id="plans" class="section reveal">
+  <h2>Тарифы</h2>
+
+  <div class="cards">
+    <div class="card">
+      <h3>30 Day</h3>
+      <span class="soon">Soon</span>
+      <div class="price">₽250</div>
+      <button class="btn select">Выбрать</button>
+    </div>
+
+    <div class="card highlight">
+      <h3>60 Day</h3>
+      <span class="soon">Soon</span>
+      <div class="price">₽350</div>
+      <button class="btn select">Выбрать</button>
+    </div>
+
+    <div class="card">
+      <h3>90 Day</h3>
+      <span class="soon">Soon</span>
+      <div class="price">₽500</div>
+      <button class="btn select">Выбрать</button>
+    </div>
+
+    <div class="card">
+      <h3>Forever</h3>
+      <span class="soon">BETA</span>
+      <div class="price">₽600</div>
+      <button class="btn select">Выбрать</button>
     </div>
   </div>
 </section>
 
-<footer>
-  <div class="container">
-    © 2026 AdvanceLoaderV3
+<!-- STATS -->
+<section class="section reveal">
+  <h2>Статистика</h2>
+
+  <div class="stats">
+    <div class="stat">
+      <span class="num" data-target="0">0</span>
+      <p>Запусков клиента</p>
+    </div>
+    <div class="stat">
+      <span class="num" data-target="0">0</span>
+      <p>Покупок</p>
+    </div>
+    <div class="stat">
+      <span class="num" data-target="0">0</span>
+      <p>Нам доверяют</p>
+    </div>
   </div>
+
+  <div class="bypass">
+    <p>Обходы — <strong>95 / 100</strong></p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="section reveal">
+  <h2>FAQ</h2>
+
+  <div class="faq">
+    <div class="faq-item">
+      <h4>Безопасно ли это?</h4>
+      <p>Да, мы используем современные методы защиты.</p>
+    </div>
+
+    <div class="faq-item">
+      <h4>Когда будет покупка?</h4>
+      <p>Функция находится в разработке.</p>
+    </div>
+
+    <div class="faq-item">
+      <h4>Будут ли обновления?</h4>
+      <p>Да, проект активно развивается.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  © 2026 AdvanceLoaderV3
 </footer>
 
-<script src="./ui.js"></script>
+<script src="ui.js"></script>
 </body>
 </html>
