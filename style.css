@@ -1,166 +1,93 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-}
+* { margin:0; padding:0; box-sizing:border-box; font-family:Arial, sans-serif; }
 
 html, body {
   overflow-x: hidden;
   color: #fff;
-  background: linear-gradient(
-    120deg,
-    #020024,
-    #090979,
-    #00d4ff
-  );
+  background: linear-gradient(120deg, #020024, #090979, #00d4ff);
   background-size: 400% 400%;
   animation: waveBg 15s ease infinite;
 }
 
-/* BACKGROUND ANIMATION */
+/* Фоновая анимация волн */
 @keyframes waveBg {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
-/* HEADER */
 .header {
   position: sticky;
-  top: 0;
-  background: rgba(0, 0, 30, 0.7);
+  top:0;
+  background: rgba(0,0,30,0.7);
   backdrop-filter: blur(10px);
-  display: flex;
-  justify-content: space-between;
-  padding: 15px 30px;
-  z-index: 100;
+  display:flex;
+  justify-content:space-between;
+  padding:15px 30px;
+  z-index:100;
 }
 
-.nav {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-}
+.nav { display:flex; gap:12px; align-items:center; }
 
-/* BUTTONS */
 .btn {
-  background: linear-gradient(135deg, #00c6ff, #0072ff);
-  border: none;
-  padding: 8px 16px;
-  border-radius: 14px;
-  color: white;
-  cursor: pointer;
-  transition: 0.3s;
+  background: linear-gradient(135deg,#00c6ff,#0072ff);
+  border:none;
+  padding:8px 16px;
+  border-radius:14px;
+  color:white;
+  cursor:pointer;
+  transition:0.3s;
 }
 
-.btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 20px #00d4ff;
-}
+.btn:hover { transform:translateY(-2px); box-shadow:0 0 20px #00d4ff; }
+.btn.ghost { background: rgba(255,255,255,0.1); }
+.btn.big { padding:14px 30px; font-size:1.1rem; }
+.soon { font-size:0.7rem; color:#aef; }
 
-.btn.ghost {
-  background: rgba(255,255,255,0.1);
-}
+.section, .hero { padding:90px 20px; text-align:center; }
+.hero h1 { font-size:3rem; }
 
-.btn.big {
-  padding: 14px 30px;
-  font-size: 1.1rem;
-}
-
-.soon {
-  font-size: 0.7rem;
-  color: #aef;
-}
-
-/* SECTIONS */
-.section, .hero {
-  padding: 90px 20px;
-  text-align: center;
-}
-
-.hero h1 {
-  font-size: 3rem;
-}
-
-/* CARDS */
 .cards {
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-  flex-wrap: wrap;
-  margin-top: 40px;
+  display:flex;
+  justify-content:center;
+  gap:25px;
+  flex-wrap:wrap;
+  margin-top:40px;
 }
 
 .card {
   background: rgba(0,0,50,0.6);
-  padding: 25px;
-  border-radius: 20px;
-  width: 220px;
-  transition: 0.3s;
+  padding:25px;
+  border-radius:20px;
+  width:220px;
+  transition:0.3s;
 }
 
-.card:hover {
-  transform: translateY(-8px);
-}
+.card:hover { transform:translateY(-8px); }
+.card.highlight { box-shadow:0 0 25px #00d4ff; }
 
-.card.highlight {
-  box-shadow: 0 0 25px #00d4ff;
-}
+.price { font-size:1.4rem; color:#00eaff; margin:10px 0; }
 
-.price {
-  font-size: 1.4rem;
-  color: #00eaff;
-  margin: 10px 0;
-}
-
-/* STATS */
 .stats {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  margin-top: 30px;
+  display:flex;
+  justify-content:center;
+  gap:40px;
+  margin-top:30px;
 }
 
-.stat .num {
-  font-size: 2rem;
-  color: #00eaff;
-}
+.stat .num { font-size:2rem; color:#00eaff; }
 
-.bypass {
-  margin-top: 25px;
-  font-size: 1.2rem;
-}
+.bypass { margin-top:25px; font-size:1.2rem; }
 
-/* FAQ */
-.faq {
-  max-width: 600px;
-  margin: 40px auto 0;
-  text-align: left;
-}
-
+.faq { max-width:600px; margin:40px auto 0; text-align:left; }
 .faq-item {
   background: rgba(0,0,60,0.6);
-  padding: 15px;
-  border-radius: 14px;
-  margin-bottom: 15px;
+  padding:15px;
+  border-radius:14px;
+  margin-bottom:15px;
 }
 
-/* FOOTER */
-footer {
-  padding: 30px;
-  text-align: center;
-  opacity: 0.7;
-}
+footer { padding:30px; text-align:center; opacity:0.7; }
 
-/* SCROLL ANIMATION */
-.reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: 0.8s ease;
-}
-
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
-}
+/* Reveal анимация */
+.reveal { opacity:0; transform:translateY(40px); transition:0.8s ease; }
+.reveal.active { opacity:1; transform:translateY(0); }
