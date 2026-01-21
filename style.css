@@ -5,7 +5,7 @@ button{background:#3b0d6a;color:#fff;border:none;padding:10px 20px;border-radius
 button:hover{background:#bb86fc;color:#1a0d2a;box-shadow:0 0 15px #bb86fc;}
 h1{text-align:center;margin:50px 0;font-size:2.5rem;color:#bb86fc;text-shadow:0 0 20px #bb86fc;}
 #about,#plans,#stats{padding:50px 20px;text-align:center;}
-.card{background:#2b0d4a;padding:30px 20px;border-radius:20px;width:250px;margin:20px auto;border:2px solid #3b0d6a;}
+.card{background:#2b0d4a;padding:30px 20px;border-radius:20px;width:250px;margin:20px auto;border:2px solid #3b0d6a;transition:0.3s;cursor:pointer;}
 .card:hover{transform:scale(1.05);box-shadow:0 0 30px #bb86fc;}
 .price{font-size:1.5rem;color:#bb86fc;margin-bottom:10px;}
 .soon{font-size:0.8rem;color:#bb86fc;}
