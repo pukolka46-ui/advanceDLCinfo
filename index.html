@@ -8,6 +8,9 @@
 </head>
 <body>
 
+<!-- Пульсирующий динамический фон -->
+<div id="bg"></div>
+
 <header>
   <div class="nav-left">
     <button class="nav-btn">Поддержка</button><span class="soon">Soon</span>
@@ -25,31 +28,31 @@
   <h1 id="heading">AdvanceLoaderV3 online 🚀</h1>
 
   <section id="about">
-    <p>
+    <p id="about-text">
       Наш проект AdvanceDLC имеет три проекта которые пока не сделаны полностью, но вскоре мы изменим нашу судьбу и станем продавать! AdvanceDLC это не просто слова. Это значение мощи и преимущества! Вас буду ждать AdvanceLoader, AdvanceDLC, AdvanceVisuals и это только у нас, следите за нами и спасибо что с нами. Нам доверяют.
     </p>
   </section>
 
   <section id="plans">
-    <div class="card">
+    <div class="card" data-speed="0.03">
       <h3>30 Day</h3>
       <span class="soon">Soon</span>
       <div class="price">₽250</div>
       <button class="buy-btn">Выбрать</button>
     </div>
-    <div class="card highlight">
+    <div class="card highlight" data-speed="0.05">
       <h3>60 Day</h3>
       <span class="soon">Soon</span>
       <div class="price">₽350</div>
       <button class="buy-btn">Выбрать</button>
     </div>
-    <div class="card">
+    <div class="card" data-speed="0.04">
       <h3>90 Day</h3>
       <span class="soon">Soon</span>
       <div class="price">₽500</div>
       <button class="buy-btn">Выбрать</button>
     </div>
-    <div class="card">
+    <div class="card" data-speed="0.02">
       <h3>Forever</h3>
       <span class="soon">BETA (Soon)</span>
       <div class="price">₽600</div>
@@ -82,6 +85,8 @@
     </div>
   </section>
 </main>
+
+<button id="topBtn">⬆️</button>
 
 <footer>
   &copy; 2026 AdvanceLoaderV3
