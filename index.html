@@ -1,36 +1,39 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>AdvanceLoaderV3</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="./style.css" />
 </head>
 
 <body>
 
-<!-- HEADER -->
 <header class="header">
-  <div class="nav-left">
-    <button id="supportBtn" class="btn ghost">Поддержка <span class="soon">Soon</span></button>
+  <div class="nav left">
+    <button class="btn ghost" id="supportBtn">
+      Поддержка <span class="soon">Soon</span>
+    </button>
   </div>
 
-  <div class="nav-center">
+  <div class="nav center">
     <button class="btn" data-scroll="about">О нас</button>
     <button class="btn" data-scroll="plans">Купить</button>
     <button class="btn" data-scroll="faq">FAQ</button>
   </div>
 
-  <div class="nav-right">
-    <button class="btn ghost">Личный кабинет</button>
-    <button id="themeBtn" class="btn">Сменить тему</button>
+  <div class="nav right">
+    <button class="btn ghost">Кабинет</button>
+    <button class="btn" id="themeBtn">Сменить тему</button>
   </div>
 </header>
 
 <!-- HERO -->
 <section class="hero reveal">
-  <h1>AdvanceLoaderV3 🚀</h1>
-  <p>Современная платформа управления DLC</p>
+  <h1>AdvanceLoaderV3</h1>
+  <p>Мощь. Преимущество. Будущее.</p>
   <button class="btn big" data-scroll="plans">Выбрать тариф</button>
 </section>
 
@@ -38,8 +41,8 @@
 <section id="about" class="section reveal">
   <h2>О нас</h2>
   <p>
-    AdvanceDLC — это экосистема инструментов: AdvanceLoader, AdvanceDLC, AdvanceVisuals.
-    Мы создаём мощные решения и постоянно развиваемся.
+    AdvanceDLC — это экосистема проектов: AdvanceLoader, AdvanceDLC, AdvanceVisuals.
+    Мы создаём решения нового поколения. Нам доверяют.
   </p>
 </section>
 
@@ -51,28 +54,28 @@
     <div class="card">
       <h3>30 Day</h3>
       <span class="soon">Soon</span>
-      <div class="price">₽250</div>
+      <div class="price">250 ₽</div>
       <button class="btn select">Выбрать</button>
     </div>
 
     <div class="card highlight">
       <h3>60 Day</h3>
       <span class="soon">Soon</span>
-      <div class="price">₽350</div>
+      <div class="price">350 ₽</div>
       <button class="btn select">Выбрать</button>
     </div>
 
     <div class="card">
       <h3>90 Day</h3>
       <span class="soon">Soon</span>
-      <div class="price">₽500</div>
+      <div class="price">500 ₽</div>
       <button class="btn select">Выбрать</button>
     </div>
 
     <div class="card">
       <h3>Forever</h3>
       <span class="soon">BETA</span>
-      <div class="price">₽600</div>
+      <div class="price">600 ₽</div>
       <button class="btn select">Выбрать</button>
     </div>
   </div>
@@ -84,21 +87,21 @@
 
   <div class="stats">
     <div class="stat">
-      <span class="num" data-target="0">0</span>
+      <span class="num">0</span>
       <p>Запусков клиента</p>
     </div>
     <div class="stat">
-      <span class="num" data-target="0">0</span>
+      <span class="num">0</span>
       <p>Покупок</p>
     </div>
     <div class="stat">
-      <span class="num" data-target="0">0</span>
+      <span class="num">0</span>
       <p>Нам доверяют</p>
     </div>
   </div>
 
   <div class="bypass">
-    <p>Обходы — <strong>95 / 100</strong></p>
+    🌊 Обходы — <strong>95 / 100</strong>
   </div>
 </section>
 
@@ -108,27 +111,25 @@
 
   <div class="faq">
     <div class="faq-item">
-      <h4>Безопасно ли это?</h4>
-      <p>Да, мы используем современные методы защиты.</p>
+      <h4>Это безопасно?</h4>
+      <p>Да. Используются современные методы.</p>
     </div>
-
     <div class="faq-item">
-      <h4>Когда будет покупка?</h4>
-      <p>Функция находится в разработке.</p>
+      <h4>Когда покупка?</h4>
+      <p>Скоро будет доступна.</p>
     </div>
-
     <div class="faq-item">
-      <h4>Будут ли обновления?</h4>
-      <p>Да, проект активно развивается.</p>
+      <h4>Будут обновления?</h4>
+      <p>Проект активно развивается.</p>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   © 2026 AdvanceLoaderV3
 </footer>
 
-<script src="ui.js"></script>
+<!-- JS -->
+<script src="./ui.js" defer></script>
 </body>
 </html>
