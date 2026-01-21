@@ -4,55 +4,89 @@ function scrollToSection(id){
 }
 
 // Animate stats
-function animateStat(id, target){
-  let el = document.getElementById(id), count = 0;
-  let step = Math.ceil(target / 100);
+function animateStat(id, target, progId){
+  let el = document.getElementById(id), prog = document.getElementById(progId);
+  let count=0, step=Math.ceil(target/100);
   let interval = setInterval(()=>{
-    count += step;
-    if(count >= target){ count = target; clearInterval(interval); }
-    el.textContent = count;
+    count+=step;
+    if(count>=target){ count=target; clearInterval(interval); }
+    el.textContent=count;
+    prog.style.width = `${(count/target)*100}%`;
   },20);
 }
 
-// Stats
-animateStat('stat-clients', 0);
-animateStat('stat-purchases', 0);
-animateStat('stat-trust', 0);
+// Stats animation
+animateStat('stat-clients', 0, 'prog-clients');
+animateStat('stat-purchases', 0, 'prog-purchases');
+animateStat('stat-trust', 0, 'prog-trust');
 
 // Buy buttons
 document.querySelectorAll('.buy-btn').forEach(btn=>{
   btn.addEventListener('click',()=>alert('Выбран тариф!'));
 });
 
-// Heading fetch
-fetch('/message')
-  .then(resp => resp.text())
-  .then(text => document.getElementById('heading').textContent = text)
-  .catch(()=>{});
+// Heading typewriter
+const heading = document.getElementById('heading');
+const headingText = "AdvanceLoaderV3 online 🚀";
+let idx=0;
+function typeWriter(){ if(idx<headingText.length){ heading.textContent+=headingText[idx]; idx++; setTimeout(typeWriter,50); } }
+typeWriter();
 
-// Parallax effect cards
-window.addEventListener('scroll', ()=>{
+// Card parallax
+window.addEventListener('scroll',()=>{
   document.querySelectorAll('.card').forEach(card=>{
     const speed = card.dataset.speed || 0.05;
-    const offset = window.scrollY * speed;
+    const offset = window.scrollY*speed;
     card.style.transform = `translateY(${offset}px) rotateY(10deg)`;
   });
 
-  // Back to top button show/hide
+  // Back to top
   const topBtn = document.getElementById('topBtn');
-  if(window.scrollY > 200){ topBtn.style.display='block'; }
+  if(window.scrollY>200){ topBtn.style.display='block'; }
   else { topBtn.style.display='none'; }
 });
 
-// Back to top button click
-document.getElementById('topBtn').addEventListener('click',()=>{
-  window.scrollTo({top:0, behavior:'smooth'});
-});
+// Top button click
+document.getElementById('topBtn').addEventListener('click',()=>{ window.scrollTo({top:0,behavior:'smooth'}); });
 
-// Animate "О нас" текст (fade in)
+// About text fade
 const aboutText = document.getElementById('about-text');
 aboutText.style.opacity=0;
 window.addEventListener('scroll',()=>{
   const rect = aboutText.getBoundingClientRect();
   if(rect.top < window.innerHeight-100) aboutText.style.opacity=1;
+});
+
+// Particles background
+const canvas = document.getElementById('bgCanvas');
+const ctx = canvas.getContext('2d');
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let particles=[];
+for(let i=0;i<100;i++){
+  particles.push({x:Math.random()*canvas.width, y:Math.random()*canvas.height, r:Math.random()*2+1, dx:(Math.random()-0.5)*0.5, dy:(Math.random()-0.5)*0.5});
+}
+
+function animateParticles(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach(p=>{
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle="rgba(187,134,252,0.7)";
+    ctx.fill();
+    p.x+=p.dx; p.y+=p.dy;
+    if(p.x>canvas.width)p.x=0;
+    if(p.x<0)p.x=canvas.width;
+    if(p.y>canvas.height)p.y=0;
+    if(p.y<0)p.y=canvas.height;
+  });
+  requestAnimationFrame(animateParticles);
+}
+animateParticles();
+
+// Handle resize
+window.addEventListener('resize',()=>{
+  canvas.width=window.innerWidth;
+  canvas.height=window.innerHeight;
 });
