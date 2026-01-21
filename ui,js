@@ -1,9 +1,7 @@
-// Smooth scroll
-function scrollToSection(id){
-  document.getElementById(id).scrollIntoView({behavior:"smooth"});
-}
+function openLink(url){ window.open(url,'_blank'); }
+function scrollToSection(id){ document.getElementById(id).scrollIntoView({behavior:"smooth"}); }
 
-// Animate stats
+// Stats animation
 function animateStat(id, target, progId){
   let el = document.getElementById(id), prog = document.getElementById(progId);
   let count=0, step=Math.ceil(target/100);
@@ -23,7 +21,7 @@ document.querySelectorAll('.buy-btn').forEach(btn=>{
   btn.addEventListener('click',()=>alert('Выбран тариф!'));
 });
 
-// Typewriter
+// Typewriter heading
 const heading = document.getElementById('heading');
 const headingText = "AdvanceLoaderV3 online 🚀";
 let idx=0;
@@ -37,8 +35,7 @@ window.addEventListener('scroll',()=>{
     const offset = window.scrollY*speed;
     card.style.transform = `translateY(${offset}px) rotateY(10deg)`;
   });
-
-  // Back to top
+  // Back-to-top
   const topBtn = document.getElementById('topBtn');
   topBtn.style.display = window.scrollY>200?'block':'none';
 });
@@ -52,14 +49,10 @@ window.addEventListener('scroll',()=>{
 });
 
 // Particles
-const canvas = document.getElementById('bgCanvas');
-const ctx = canvas.getContext('2d');
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
+const canvas=document.getElementById('bgCanvas'); const ctx=canvas.getContext('2d');
+canvas.width=window.innerWidth; canvas.height=window.innerHeight;
 let particles=[];
-for(let i=0;i<120;i++){
-  particles.push({x:Math.random()*canvas.width, y:Math.random()*canvas.height, r:Math.random()*2+1, dx:(Math.random()-0.5)*0.5, dy:(Math.random()-0.5)*0.5});
-}
+for(let i=0;i<120;i++){ particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2+1,dx:(Math.random()-0.5)*0.5,dy:(Math.random()-0.5)*0.5}); }
 function animateParticles(){
   ctx.clearRect(0,0,canvas.width,canvas.height);
   particles.forEach(p=>{
@@ -68,17 +61,17 @@ function animateParticles(){
     ctx.fillStyle="rgba(187,134,252,0.7)";
     ctx.fill();
     p.x+=p.dx; p.y+=p.dy;
-    if(p.x>canvas.width)p.x=0;if(p.x<0)p.x=canvas.width;
-    if(p.y>canvas.height)p.y=0;if(p.y<0)p.y=canvas.height;
+    if(p.x>canvas.width)p.x=0; if(p.x<0)p.x=canvas.width;
+    if(p.y>canvas.height)p.y=0; if(p.y<0)p.y=canvas.height;
   });
   requestAnimationFrame(animateParticles);
 }
 animateParticles();
 window.addEventListener('resize',()=>{canvas.width=window.innerWidth; canvas.height=window.innerHeight;});
 
-// Theme switch (исправлено)
+// Theme switch
 const themeBtn = document.getElementById('themeBtn');
-let themeIndex = 4; // по умолчанию тема 4
+let themeIndex = 4; // default
 themeBtn.addEventListener('click',()=>{
   themeIndex++; if(themeIndex>4) themeIndex=1;
   document.body.className = `theme${themeIndex}`;
