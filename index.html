@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,17 +12,16 @@
 
 <header>
   <div class="nav-left">
-    <button class="nav-btn" onclick="alert('Поддержка скоро')">Поддержка</button>
-    <span class="soon">Soon</span>
-    <button class="nav-btn" onclick="openLink('https://t.me/AdvanceLoader')">Telegram</button>
-    <button class="nav-btn" onclick="openLink('https://discord.gg/AdvanceLoader')">Discord</button>
+    <button class="nav-btn" id="supportBtn">Поддержка</button><span class="soon">Soon</span>
   </div>
+
   <div class="nav-center">
-    <button class="nav-btn" onclick="scrollToSection('about')">О нас</button>
-    <button class="nav-btn" onclick="scrollToSection('plans')">Купить</button>
+    <button class="nav-btn" id="aboutBtn">О нас</button>
+    <button class="nav-btn" id="buyBtn">Купить</button>
   </div>
+
   <div class="nav-right">
-    <button class="nav-btn" onclick="alert('Личный кабинет скоро')">Личный кабинет</button>
+    <button class="nav-btn" id="cabinetBtn">Личный кабинет</button>
     <button class="nav-btn" id="themeBtn">Сменить тему</button>
   </div>
 </header>
@@ -30,12 +29,14 @@
 <main>
   <h1 id="heading"></h1>
 
+  <!-- О нас -->
   <section id="about">
     <p id="about-text">
       Наш проект AdvanceDLC имеет три проекта которые пока не сделаны полностью, но вскоре мы изменим нашу судьбу и станем продавать! AdvanceDLC это не просто слова. Это значение мощи и преимущества! Вас буду ждать AdvanceLoader, AdvanceDLC, AdvanceVisuals и это только у нас, следите за нами и спасибо что с нами. Нам доверяют.
     </p>
   </section>
 
+  <!-- Карточки тарифов -->
   <section id="plans">
     <div class="card" data-speed="0.03">
       <h3>30 Day</h3>
@@ -63,6 +64,7 @@
     </div>
   </section>
 
+  <!-- Отзывы -->
   <section id="reviews">
     <h2>Отзывы и доверие</h2>
     <div class="review-logos">
@@ -73,6 +75,7 @@
     </div>
   </section>
 
+  <!-- Статистика -->
   <section id="stats">
     <div class="stat">
       <h3 id="stat-clients">0</h3>
@@ -92,6 +95,7 @@
   </section>
 </main>
 
+<!-- Back to top -->
 <button id="topBtn">⬆️</button>
 
 <footer>
