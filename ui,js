@@ -1,19 +1,20 @@
-// Scroll
+// Smooth scroll
 function scrollToSection(id){
   document.getElementById(id).scrollIntoView({behavior:"smooth"});
 }
 
-// Animate stats (count up)
+// Animate stats
 function animateStat(id, target){
   let el = document.getElementById(id), count = 0;
   let step = Math.ceil(target / 100);
   let interval = setInterval(()=>{
     count += step;
-    if(count >= target){ count = target; clearInterval(interval); count = target; }
+    if(count >= target){ count = target; clearInterval(interval); }
     el.textContent = count;
   },20);
 }
 
+// Stats (анимированные)
 animateStat('stat-clients', 0);
 animateStat('stat-purchases', 0);
 animateStat('stat-trust', 0);
@@ -23,8 +24,17 @@ document.querySelectorAll('.buy-btn').forEach(btn=>{
   btn.addEventListener('click',()=>alert('Выбран тариф!'));
 });
 
-// Fetch heading if backend есть
+// Heading API
 fetch('/message')
   .then(resp => resp.text())
   .then(text => document.getElementById('heading').textContent = text)
   .catch(()=>{});
+
+// Parallax effect для карточек при скролле
+window.addEventListener('scroll', ()=>{
+  document.querySelectorAll('.card').forEach(card=>{
+    const speed = card.dataset.speed || 0.05;
+    const offset = window.scrollY * speed;
+    card.style.transform = `translateY(${offset}px) rotateY(10deg)`;
+  });
+});
