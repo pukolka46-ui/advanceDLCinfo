@@ -1,10 +1,13 @@
 /* Reset */
 * { margin:0; padding:0; box-sizing:border-box; font-family: 'Arial', sans-serif; }
-body { background:linear-gradient(120deg,#1a0d2a,#2c0e4a,#1a0d2a); color:#fff; line-height:1.5; overflow-x:hidden; }
-a { text-decoration:none; color:inherit; }
+body { color:#fff; line-height:1.5; overflow-x:hidden; position:relative; }
+
+/* Динамический фон */
+#bg { position:fixed; top:0; left:0; width:100%; height:100%; background:linear-gradient(120deg,#1a0d2a,#2c0e4a,#1a0d2a); z-index:-1; animation:bgAnim 20s infinite alternate; }
+@keyframes bgAnim { 0%{background-position:0 0}100%{background-position:100% 100%} }
 
 /* Header */
-header { display:flex; justify-content:space-between; align-items:center; padding:20px 50px; background:rgba(43,13,74,0.9); position:sticky; top:0; z-index:100; }
+header { display:flex; justify-content:space-between; align-items:center; padding:20px 50px; background:rgba(43,13,74,0.85); position:sticky; top:0; z-index:100; }
 .nav-left, .nav-center, .nav-right { display:flex; gap:20px; align-items:center; }
 .soon { font-size:0.8rem; color:#bb86fc; margin-left:5px; }
 .nav-btn { background:#3b0d6a; color:#fff; border:none; padding:10px 20px; cursor:pointer; border-radius:8px; transition:0.3s; }
@@ -14,7 +17,7 @@ header { display:flex; justify-content:space-between; align-items:center; paddin
 #heading { text-align:center; margin:50px 20px 40px; font-size:2.5rem; color:#bb86fc; text-shadow:0 0 20px #bb86fc; }
 
 /* About */
-#about { padding:50px 20px; text-align:center; max-width:900px; margin:0 auto; font-size:1.1rem; color:#ddd; }
+#about { padding:50px 20px; text-align:center; max-width:900px; margin:0 auto; font-size:1.1rem; color:#ddd; animation:fadeIn 1.5s ease-in; }
 
 /* Cards */
 #plans { display:flex; flex-wrap:wrap; justify-content:center; gap:30px; padding:50px 20px; scroll-margin-top:80px; perspective:1000px; }
@@ -31,19 +34,24 @@ header { display:flex; justify-content:space-between; align-items:center; paddin
 
 /* Reviews section */
 #reviews { padding:50px 20px; text-align:center; }
-#reviews h2 { color:#bb86fc; margin-bottom:20px; font-size:2rem; }
+#reviews h2 { color:#bb86fc; margin-bottom:20px; font-size:2rem; animation:fadeIn 1.5s ease-in; }
 .review-logos { display:flex; justify-content:center; gap:30px; flex-wrap:wrap; }
 .logo { background:#3b0d6a; padding:20px; border-radius:15px; font-size:2rem; transition:0.3s; cursor:pointer; }
 .logo:hover { transform:scale(1.2); box-shadow:0 0 25px #bb86fc; }
 
 /* Stats */
-#stats { display:flex; justify-content:center; gap:50px; padding:50px 20px; background:rgba(43,13,74,0.9); }
+#stats { display:flex; justify-content:center; gap:50px; padding:50px 20px; background:rgba(43,13,74,0.85); }
 .stat { text-align:center; }
 .stat h3 { font-size:2rem; color:#bb86fc; }
 .stat p { margin-top:5px; font-size:1rem; color:#ddd; }
 
-/* Footer */
-footer { text-align:center; padding:20px; background:rgba(43,13,74,0.9); font-size:0.8rem; color:#888; }
+/* Back to top button */
+#topBtn { position:fixed; bottom:30px; right:30px; padding:10px 15px; border:none; border-radius:50%; background:#3b0d6a; color:#fff; cursor:pointer; display:none; box-shadow:0 0 15px #bb86fc; transition:0.3s; }
+#topBtn:hover { background:#bb86fc; color:#1a0d2a; }
 
-/* Scroll smooth */
+/* Footer */
+footer { text-align:center; padding:20px; background:rgba(43,13,74,0.85); font-size:0.8rem; color:#888; }
+
+/* Scroll smooth & fadeIn */
 html { scroll-behavior: smooth; }
+@keyframes fadeIn { from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);} }
