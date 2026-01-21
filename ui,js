@@ -1,4 +1,4 @@
-// Smooth scroll к секциям
+// Scroll
 function scrollToSection(id){
   document.getElementById(id).scrollIntoView({behavior:"smooth"});
 }
@@ -14,18 +14,17 @@ function animateStat(id, target){
   },20);
 }
 
-// Запускаем анимацию с нуля (0 пока)
 animateStat('stat-clients', 0);
 animateStat('stat-purchases', 0);
 animateStat('stat-trust', 0);
 
-// Кнопки тарифов
+// Buy buttons
 document.querySelectorAll('.buy-btn').forEach(btn=>{
   btn.addEventListener('click',()=>alert('Выбран тариф!'));
 });
 
-// API fetch заголовка (если есть backend)
+// Fetch heading if backend есть
 fetch('/message')
   .then(resp => resp.text())
   .then(text => document.getElementById('heading').textContent = text)
-  .catch(()=>{}); // на случай отсутствия backend
+  .catch(()=>{});
