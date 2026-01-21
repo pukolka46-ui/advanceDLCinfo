@@ -76,10 +76,10 @@ function animateParticles(){
 animateParticles();
 window.addEventListener('resize',()=>{canvas.width=window.innerWidth; canvas.height=window.innerHeight;});
 
-// Theme switch
+// Theme switch (исправлено)
 const themeBtn = document.getElementById('themeBtn');
-let themeIndex=1;
+let themeIndex = 4; // по умолчанию тема 4
 themeBtn.addEventListener('click',()=>{
   themeIndex++; if(themeIndex>4) themeIndex=1;
-  document.body.className=`theme${themeIndex}`;
+  document.body.className = `theme${themeIndex}`;
 });
