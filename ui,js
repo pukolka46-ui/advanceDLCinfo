@@ -1,31 +1,39 @@
-document.addEventListener('DOMContentLoaded', ()=>{
+document.addEventListener('DOMContentLoaded',()=>{
 
   document.getElementById('supportBtn').onclick = ()=>alert('Поддержка скоро!');
   document.getElementById('aboutBtn').onclick = ()=>document.getElementById('about').scrollIntoView({behavior:'smooth'});
   document.getElementById('buyBtn').onclick = ()=>document.getElementById('plans').scrollIntoView({behavior:'smooth'});
+  document.getElementById('buyBtnHero').onclick = ()=>document.getElementById('plans').scrollIntoView({behavior:'smooth'});
   document.getElementById('cabinetBtn').onclick = ()=>alert('Личный кабинет пока недоступен.');
 
-  let themeIndex = 4;
+  // Смена темы
+  let themeIndex=1;
   document.getElementById('themeBtn').onclick = ()=>{
     themeIndex++;
     if(themeIndex>4) themeIndex=1;
     document.body.className=`theme${themeIndex}`;
   }
 
-  const heading = document.getElementById('heading');
-  const text = heading.textContent;
+  // Typewriter
+  const heading=document.getElementById('heading');
+  const text=heading.textContent;
   heading.textContent='';
   let i=0;
-  function typeWriter(){
-    if(i<text.length){heading.textContent+=text[i];i++;setTimeout(typeWriter,50);}
-  }
+  function typeWriter(){if(i<text.length){heading.textContent+=text[i];i++;setTimeout(typeWriter,50);}}
   typeWriter();
 
-  document.querySelectorAll('.buy-btn').forEach(btn=>{
-    btn.onclick = ()=>alert('Выбран тариф!');
-  });
+  // Карточки тарифов
+  document.querySelectorAll('.buy-btn').forEach(btn=>btn.onclick=()=>alert('Выбран тариф!'));
 
-  const topBtn = document.getElementById('topBtn');
-  topBtn.onclick = ()=>window.scrollTo({top:0,behavior:'smooth'});
-  window.onscroll = ()=>topBtn.style.display=window.scrollY>200?'block':'none';
+  // Back-to-top
+  const topBtn=document.getElementById('topBtn');
+  topBtn.onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+  window.onscroll=()=>topBtn.style.display=window.scrollY>200?'block':'none';
+
+  // Статистика
+  function animateStat(id,target){let el=document.getElementById(id);let count=0;let step=Math.ceil(target/100);let interval=setInterval(()=>{count+=step;if(count>=target){count=target;clearInterval(interval);}el.textContent=count;},20);}
+  animateStat('stat-clients',100);
+  animateStat('stat-purchases',50);
+  animateStat('stat-trust',20);
+
 });
