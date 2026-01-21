@@ -14,7 +14,7 @@ function animateStat(id, target){
   },20);
 }
 
-// Stats (анимированные)
+// Stats
 animateStat('stat-clients', 0);
 animateStat('stat-purchases', 0);
 animateStat('stat-trust', 0);
@@ -24,17 +24,35 @@ document.querySelectorAll('.buy-btn').forEach(btn=>{
   btn.addEventListener('click',()=>alert('Выбран тариф!'));
 });
 
-// Heading API
+// Heading fetch
 fetch('/message')
   .then(resp => resp.text())
   .then(text => document.getElementById('heading').textContent = text)
   .catch(()=>{});
 
-// Parallax effect для карточек при скролле
+// Parallax effect cards
 window.addEventListener('scroll', ()=>{
   document.querySelectorAll('.card').forEach(card=>{
     const speed = card.dataset.speed || 0.05;
     const offset = window.scrollY * speed;
     card.style.transform = `translateY(${offset}px) rotateY(10deg)`;
   });
+
+  // Back to top button show/hide
+  const topBtn = document.getElementById('topBtn');
+  if(window.scrollY > 200){ topBtn.style.display='block'; }
+  else { topBtn.style.display='none'; }
+});
+
+// Back to top button click
+document.getElementById('topBtn').addEventListener('click',()=>{
+  window.scrollTo({top:0, behavior:'smooth'});
+});
+
+// Animate "О нас" текст (fade in)
+const aboutText = document.getElementById('about-text');
+aboutText.style.opacity=0;
+window.addEventListener('scroll',()=>{
+  const rect = aboutText.getBoundingClientRect();
+  if(rect.top < window.innerHeight-100) aboutText.style.opacity=1;
 });
