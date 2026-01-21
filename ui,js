@@ -1,49 +1,37 @@
 document.addEventListener('DOMContentLoaded', ()=>{
 
-  const supportBtn = document.getElementById('supportBtn');
-  const aboutBtn = document.getElementById('aboutBtn');
-  const buyBtn = document.getElementById('buyBtn');
-  const cabinetBtn = document.getElementById('cabinetBtn');
-  const themeBtn = document.getElementById('themeBtn');
-  const topBtn = document.getElementById('topBtn');
-
-  // --- Верхние кнопки ---
-  supportBtn.addEventListener('click', ()=>alert('Поддержка скоро!'));
-  aboutBtn.addEventListener('click', ()=>document.getElementById('about').scrollIntoView({behavior:'smooth'}));
-  buyBtn.addEventListener('click', ()=>document.getElementById('plans').scrollIntoView({behavior:'smooth'}));
-  cabinetBtn.addEventListener('click', ()=>alert('Личный кабинет пока недоступен.'));
-
-  // --- Смена темы ---
+  // Верхние кнопки
+  document.getElementById('supportBtn').onclick = ()=>alert('Поддержка скоро!');
+  document.getElementById('aboutBtn').onclick = ()=>document.getElementById('about').scrollIntoView({behavior:'smooth'});
+  document.getElementById('buyBtn').onclick = ()=>document.getElementById('plans').scrollIntoView({behavior:'smooth'});
+  document.getElementById('cabinetBtn').onclick = ()=>alert('Личный кабинет пока недоступен.');
+  
+  // Смена темы
   let themeIndex = 4;
-  themeBtn.addEventListener('click', ()=>{
+  document.getElementById('themeBtn').onclick = ()=>{
     themeIndex++;
     if(themeIndex>4) themeIndex=1;
-    document.body.className=`theme${themeIndex}`;
-  });
+    document.body.className = `theme${themeIndex}`;
+  }
 
-  // --- Typewriter ---
+  // Typewriter
   const heading = document.getElementById('heading');
-  const headingText = "AdvanceLoaderV3 online 🚀";
-  let idx = 0;
+  const text = heading.textContent;
+  heading.textContent = '';
+  let i = 0;
   function typeWriter(){
-    if(idx<headingText.length){heading.textContent+=headingText[idx];idx++;setTimeout(typeWriter,50);}
+    if(i<text.length){heading.textContent+=text[i];i++;setTimeout(typeWriter,50);}
   }
   typeWriter();
 
-  // --- Карточки ---
+  // Карточки тарифов
   document.querySelectorAll('.buy-btn').forEach(btn=>{
-    btn.addEventListener('click',()=>alert('Выбран тариф!'));
+    btn.onclick = ()=>alert('Выбран тариф!');
   });
 
-  // --- Back to top ---
-  topBtn.addEventListener('click', ()=>window.scrollTo({top:0,behavior:'smooth'}));
-
-  // --- Fade-in About ---
-  const aboutText = document.getElementById('about-text');
-  window.addEventListener('scroll', ()=>{
-    if(aboutText.getBoundingClientRect().top<window.innerHeight-100){
-      aboutText.style.opacity=1;
-    }
-  });
+  // Back-to-top
+  const topBtn = document.getElementById('topBtn');
+  topBtn.onclick = ()=>window.scrollTo({top:0,behavior:'smooth'});
+  window.onscroll = ()=>{topBtn.style.display = window.scrollY>200?'block':'none';}
 
 });
