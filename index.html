@@ -8,8 +8,8 @@
 </head>
 <body>
 
-<!-- Пульсирующий динамический фон -->
-<div id="bg"></div>
+<!-- Динамический фон с частицами -->
+<canvas id="bgCanvas"></canvas>
 
 <header>
   <div class="nav-left">
@@ -25,7 +25,7 @@
 </header>
 
 <main>
-  <h1 id="heading">AdvanceLoaderV3 online 🚀</h1>
+  <h1 id="heading"></h1>
 
   <section id="about">
     <p id="about-text">
@@ -74,14 +74,17 @@
     <div class="stat">
       <h3 id="stat-clients">0</h3>
       <p>Запусков клиента</p>
+      <div class="progress-bar"><div class="progress" id="prog-clients"></div></div>
     </div>
     <div class="stat">
       <h3 id="stat-purchases">0</h3>
       <p>Покупок</p>
+      <div class="progress-bar"><div class="progress" id="prog-purchases"></div></div>
     </div>
     <div class="stat">
       <h3 id="stat-trust">0</h3>
       <p>Нам доверяют</p>
+      <div class="progress-bar"><div class="progress" id="prog-trust"></div></div>
     </div>
   </section>
 </main>
