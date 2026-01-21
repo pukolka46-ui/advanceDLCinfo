@@ -5,138 +5,144 @@
   font-family: Arial, sans-serif;
 }
 
-body {
-  background: linear-gradient(135deg, #06000d, #100018, #190025);
+html, body {
+  background: linear-gradient(135deg, #050008, #0b0014, #14001f);
   color: #fff;
+  overflow-x: hidden;
 }
 
-/* ===== ОБЩИЙ КОНТЕЙНЕР ===== */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-/* ===== HEADER ===== */
-header {
+/* HEADER */
+.header {
   position: sticky;
   top: 0;
-  z-index: 10;
-  background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(12px);
-}
-
-.header-inner {
+  z-index: 100;
+  background: rgba(10, 0, 20, 0.95);
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  height: 70px;
+  padding: 15px 30px;
 }
 
-/* ===== НАВИГАЦИЯ ===== */
-nav {
+.nav-left, .nav-center, .nav-right {
   display: flex;
   gap: 12px;
+  align-items: center;
 }
 
-/* ===== КНОПКИ ===== */
+/* BUTTONS */
 .btn {
-  background: #5a00aa;
+  background: linear-gradient(135deg, #6f2cff, #a855ff);
   border: none;
-  padding: 10px 16px;
-  border-radius: 10px;
-  color: #fff;
+  padding: 8px 16px;
+  border-radius: 12px;
+  color: white;
   cursor: pointer;
-  transition: 0.25s;
+  transition: 0.3s;
 }
 
 .btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 0 15px #a64dff;
+  box-shadow: 0 0 15px #a855ff;
 }
 
 .btn.ghost {
-  background: rgba(255,255,255,0.1);
+  background: #1a0028;
 }
 
-.btn span {
-  font-size: 10px;
+.btn.big {
+  padding: 14px 28px;
+  font-size: 1.1rem;
+}
+
+.soon {
+  font-size: 0.7rem;
   color: #ff66ff;
+  margin-left: 5px;
 }
 
-/* ===== СЕКЦИИ ===== */
-section {
-  padding: 100px 0;
+/* SECTIONS */
+.section {
+  padding: 80px 20px;
   text-align: center;
 }
 
-h1 {
-  font-size: 48px;
-  margin-bottom: 15px;
+.hero {
+  padding: 120px 20px;
+  text-align: center;
 }
 
-h2 {
-  font-size: 34px;
-  margin-bottom: 30px;
-}
-
-/* ===== КАРТОЧКИ ===== */
+/* CARDS */
 .cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  display: flex;
+  justify-content: center;
   gap: 25px;
+  flex-wrap: wrap;
+  margin-top: 40px;
 }
 
 .card {
-  background: rgba(0,0,0,0.5);
-  border-radius: 18px;
+  background: #12001f;
   padding: 25px;
+  border-radius: 20px;
+  width: 220px;
   transition: 0.3s;
 }
 
 .card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-8px);
 }
 
 .card.highlight {
-  box-shadow: 0 0 25px #a64dff;
+  box-shadow: 0 0 25px #a855ff;
 }
 
 .price {
-  margin: 15px 0;
-  font-size: 24px;
-  color: #ff99ff;
+  font-size: 1.4rem;
+  color: #ff66ff;
+  margin: 10px 0;
 }
 
-/* ===== СТАТИСТИКА ===== */
+/* STATS */
 .stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  display: flex;
+  justify-content: center;
   gap: 40px;
+  margin-top: 30px;
 }
 
-.stats span {
-  font-size: 36px;
-  color: #ff99ff;
+.stat .num {
+  font-size: 2rem;
+  color: #ff66ff;
 }
 
-/* ===== FAQ ===== */
+/* FAQ */
 .faq {
-  max-width: 800px;
-  margin: 0 auto;
+  max-width: 600px;
+  margin: 40px auto 0;
   text-align: left;
 }
 
 .faq-item {
-  background: rgba(0,0,0,0.5);
-  padding: 20px;
-  border-radius: 14px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
+  background: #12001f;
+  padding: 15px;
+  border-radius: 12px;
 }
 
-/* ===== FOOTER ===== */
+/* FOOTER */
 footer {
-  padding: 30px 0;
   text-align: center;
-  opacity: 0.5;
+  padding: 30px;
+  opacity: 0.6;
+}
+
+/* SCROLL ANIMATION */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 0.8s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
 }
