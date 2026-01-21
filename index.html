@@ -1,95 +1,87 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AdvanceLoaderV3</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>AdvanceLoaderV3</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body class="theme1">
+<body>
 
-<header>
-  <div class="nav-left">
-    <button id="supportBtn">Поддержка</button><span class="soon">Soon</span>
+<header class="header">
+  <div class="left">
+    <button class="btn ghost" id="supportBtn">Поддержка <span>Soon</span></button>
   </div>
-  <div class="nav-center">
-    <button id="aboutBtn">О нас</button>
-    <button id="buyBtn">Купить</button>
+
+  <div class="center">
+    <button class="btn" data-scroll="about">О нас</button>
+    <button class="btn" data-scroll="plans">Купить</button>
   </div>
-  <div class="nav-right">
-    <button id="cabinetBtn">Личный кабинет</button>
-    <button id="themeBtn">Сменить тему</button>
+
+  <div class="right">
+    <button class="btn ghost">Личный кабинет</button>
+    <button class="btn" id="themeBtn">Сменить тему</button>
   </div>
 </header>
 
-<section id="hero">
-  <h1 id="heading">Добро пожаловать в AdvanceLoaderV3 🚀</h1>
-  <p class="hero-text">Самый современный инструмент для загрузки и управления DLC. Все, что тебе нужно, в одном месте!</p>
-  <button id="buyBtnHero" class="main-btn">Выбрать тариф</button>
+<section class="hero">
+  <h1>AdvanceLoaderV3 🚀</h1>
+  <p>Современный инструмент управления DLC и визуалов</p>
+  <button class="btn big" data-scroll="plans">Выбрать тариф</button>
 </section>
 
-<section id="about">
+<section id="about" class="section">
   <h2>О нас</h2>
-  <p id="about-text">
-    AdvanceDLC — это инновационный проект с тремя основными направлениями: AdvanceLoader, AdvanceDLC, AdvanceVisuals. Мы строим мощные инструменты для пользователей. Следите за обновлениями!
+  <p>
+    AdvanceDLC — это не просто проект.  
+    Это мощь, преимущество и будущее.
+    AdvanceLoader, AdvanceDLC, AdvanceVisuals — только у нас.
   </p>
 </section>
 
-<section id="plans">
+<section id="plans" class="section">
   <h2>Тарифы</h2>
-  <div class="cards-container">
+
+  <div class="cards">
     <div class="card">
       <h3>30 Day</h3>
-      <span class="soon">Soon</span>
-      <div class="price">₽250</div>
-      <button class="buy-btn">Выбрать</button>
+      <p class="price">₽250</p>
+      <button class="btn select">Выбрать</button>
     </div>
-    <div class="card">
+
+    <div class="card highlight">
       <h3>60 Day</h3>
-      <span class="soon">Soon</span>
-      <div class="price">₽350</div>
-      <button class="buy-btn">Выбрать</button>
+      <p class="price">₽350</p>
+      <button class="btn select">Выбрать</button>
     </div>
+
     <div class="card">
       <h3>90 Day</h3>
-      <span class="soon">Soon</span>
-      <div class="price">₽500</div>
-      <button class="buy-btn">Выбрать</button>
+      <p class="price">₽500</p>
+      <button class="btn select">Выбрать</button>
     </div>
+
     <div class="card">
       <h3>Forever</h3>
-      <span class="soon">BETA (Soon)</span>
-      <div class="price">₽600</div>
-      <button class="buy-btn">Выбрать</button>
+      <p class="price">₽600</p>
+      <small>BETA (Soon)</small>
+      <button class="btn select">Выбрать</button>
     </div>
   </div>
 </section>
 
-<section id="stats">
-  <h2>Статистика</h2>
-  <div class="stats-container">
-    <div class="stat">
-      <h3 id="stat-clients">0</h3>
-      <p>Запусков клиента</p>
-      <div class="progress-bar"><div class="progress" id="prog-clients"></div></div>
-    </div>
-    <div class="stat">
-      <h3 id="stat-purchases">0</h3>
-      <p>Покупок</p>
-      <div class="progress-bar"><div class="progress" id="prog-purchases"></div></div>
-    </div>
-    <div class="stat">
-      <h3 id="stat-trust">0</h3>
-      <p>Нам доверяют</p>
-      <div class="progress-bar"><div class="progress" id="prog-trust"></div></div>
-    </div>
+<section class="section extra">
+  <h2>Преимущества</h2>
+  <div class="stats">
+    <div><span>95/100</span><p>Обходы</p></div>
+    <div><span>0</span><p>Запусков</p></div>
+    <div><span>0</span><p>Покупок</p></div>
+    <div><span>0</span><p>Нам доверяют</p></div>
   </div>
 </section>
-
-<button id="topBtn">⬆️</button>
 
 <footer>
-  &copy; 2026 AdvanceLoaderV3
+  © 2026 AdvanceLoaderV3
 </footer>
 
 <script src="ui.js"></script>
