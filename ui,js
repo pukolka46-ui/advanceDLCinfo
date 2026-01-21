@@ -1,26 +1,44 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  // кнопки выбора тарифа
-  document.querySelectorAll(".select").forEach(btn => {
-    btn.onclick = () => alert("Тариф выбран (Soon)");
+  /* SCROLL TO SECTIONS */
+  document.querySelectorAll("[data-scroll]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const id = btn.getAttribute("data-scroll");
+      document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+    });
   });
 
-  // поддержка
-  const support = document.getElementById("supportBtn");
-  if (support) {
-    support.onclick = () => alert("Поддержка скоро будет доступна");
-  }
+  /* SUPPORT */
+  document.getElementById("supportBtn")?.addEventListener("click", () => {
+    alert("Поддержка скоро");
+  });
 
-  // смена темы
-  const theme = document.getElementById("themeBtn");
-  if (theme) {
-    let dark = true;
-    theme.onclick = () => {
-      dark = !dark;
-      document.body.style.background = dark
-        ? "linear-gradient(135deg, #07000f, #12001f, #1a0030)"
-        : "linear-gradient(135deg, #0f2027, #203a43, #2c5364)";
-    };
-  }
+  /* THEME */
+  let dark = true;
+  document.getElementById("themeBtn")?.addEventListener("click", () => {
+    dark = !dark;
+    document.body.style.background = dark
+      ? "linear-gradient(135deg, #050008, #0b0014, #14001f)"
+      : "linear-gradient(135deg, #0f2027, #203a43, #2c5364)";
+  });
+
+  /* SELECT PLAN */
+  document.querySelectorAll(".select").forEach(btn => {
+    btn.addEventListener("click", () => {
+      alert("Покупка будет доступна позже");
+    });
+  });
+
+  /* SCROLL ANIMATION */
+  const reveals = document.querySelectorAll(".reveal");
+  const reveal = () => {
+    reveals.forEach(el => {
+      if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+        el.classList.add("active");
+      }
+    });
+  };
+  window.addEventListener("scroll", reveal);
+  reveal();
 
 });
