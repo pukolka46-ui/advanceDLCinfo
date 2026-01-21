@@ -6,23 +6,38 @@
 }
 
 html, body {
-  background: linear-gradient(135deg, #050008, #0b0014, #14001f);
-  color: #fff;
   overflow-x: hidden;
+  color: #fff;
+  background: linear-gradient(
+    120deg,
+    #020024,
+    #090979,
+    #00d4ff
+  );
+  background-size: 400% 400%;
+  animation: waveBg 15s ease infinite;
+}
+
+/* BACKGROUND ANIMATION */
+@keyframes waveBg {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 /* HEADER */
 .header {
   position: sticky;
   top: 0;
-  z-index: 100;
-  background: rgba(10, 0, 20, 0.95);
+  background: rgba(0, 0, 30, 0.7);
+  backdrop-filter: blur(10px);
   display: flex;
   justify-content: space-between;
   padding: 15px 30px;
+  z-index: 100;
 }
 
-.nav-left, .nav-center, .nav-right {
+.nav {
   display: flex;
   gap: 12px;
   align-items: center;
@@ -30,10 +45,10 @@ html, body {
 
 /* BUTTONS */
 .btn {
-  background: linear-gradient(135deg, #6f2cff, #a855ff);
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
   border: none;
   padding: 8px 16px;
-  border-radius: 12px;
+  border-radius: 14px;
   color: white;
   cursor: pointer;
   transition: 0.3s;
@@ -41,33 +56,31 @@ html, body {
 
 .btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 0 15px #a855ff;
+  box-shadow: 0 0 20px #00d4ff;
 }
 
 .btn.ghost {
-  background: #1a0028;
+  background: rgba(255,255,255,0.1);
 }
 
 .btn.big {
-  padding: 14px 28px;
+  padding: 14px 30px;
   font-size: 1.1rem;
 }
 
 .soon {
   font-size: 0.7rem;
-  color: #ff66ff;
-  margin-left: 5px;
+  color: #aef;
 }
 
 /* SECTIONS */
-.section {
-  padding: 80px 20px;
+.section, .hero {
+  padding: 90px 20px;
   text-align: center;
 }
 
-.hero {
-  padding: 120px 20px;
-  text-align: center;
+.hero h1 {
+  font-size: 3rem;
 }
 
 /* CARDS */
@@ -80,7 +93,7 @@ html, body {
 }
 
 .card {
-  background: #12001f;
+  background: rgba(0,0,50,0.6);
   padding: 25px;
   border-radius: 20px;
   width: 220px;
@@ -92,12 +105,12 @@ html, body {
 }
 
 .card.highlight {
-  box-shadow: 0 0 25px #a855ff;
+  box-shadow: 0 0 25px #00d4ff;
 }
 
 .price {
   font-size: 1.4rem;
-  color: #ff66ff;
+  color: #00eaff;
   margin: 10px 0;
 }
 
@@ -111,7 +124,12 @@ html, body {
 
 .stat .num {
   font-size: 2rem;
-  color: #ff66ff;
+  color: #00eaff;
+}
+
+.bypass {
+  margin-top: 25px;
+  font-size: 1.2rem;
 }
 
 /* FAQ */
@@ -122,17 +140,17 @@ html, body {
 }
 
 .faq-item {
-  margin-bottom: 20px;
-  background: #12001f;
+  background: rgba(0,0,60,0.6);
   padding: 15px;
-  border-radius: 12px;
+  border-radius: 14px;
+  margin-bottom: 15px;
 }
 
 /* FOOTER */
 footer {
-  text-align: center;
   padding: 30px;
-  opacity: 0.6;
+  text-align: center;
+  opacity: 0.7;
 }
 
 /* SCROLL ANIMATION */
