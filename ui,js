@@ -1,78 +1,56 @@
+// Открыть ссылку
 function openLink(url){ window.open(url,'_blank'); }
+// Плавный скролл
 function scrollToSection(id){ document.getElementById(id).scrollIntoView({behavior:"smooth"}); }
 
-// Stats animation
+// Статистика
 function animateStat(id, target, progId){
-  let el = document.getElementById(id), prog = document.getElementById(progId);
+  let el=document.getElementById(id), prog=document.getElementById(progId);
   let count=0, step=Math.ceil(target/100);
-  let interval = setInterval(()=>{
+  let interval=setInterval(()=>{
     count+=step;
-    if(count>=target){ count=target; clearInterval(interval); }
+    if(count>=target){count=target; clearInterval(interval);}
     el.textContent=count;
     prog.style.width = `${(count/target)*100}%`;
   },20);
 }
-animateStat('stat-clients',0,'prog-clients');
-animateStat('stat-purchases',0,'prog-purchases');
-animateStat('stat-trust',0,'prog-trust');
+animateStat('stat-clients',100,'prog-clients');
+animateStat('stat-purchases',50,'prog-purchases');
+animateStat('stat-trust',20,'prog-trust');
 
-// Buy buttons
-document.querySelectorAll('.buy-btn').forEach(btn=>{
-  btn.addEventListener('click',()=>alert('Выбран тариф!'));
-});
-
-// Typewriter heading
+// Typewriter
 const heading = document.getElementById('heading');
 const headingText = "AdvanceLoaderV3 online 🚀";
 let idx=0;
 function typeWriter(){ if(idx<headingText.length){ heading.textContent+=headingText[idx]; idx++; setTimeout(typeWriter,50); } }
 typeWriter();
 
-// Card parallax
+// Card parallax и back-to-top
 window.addEventListener('scroll',()=>{
   document.querySelectorAll('.card').forEach(card=>{
-    const speed = card.dataset.speed || 0.05;
-    const offset = window.scrollY*speed;
+    const speed=card.dataset.speed||0.05;
+    const offset=window.scrollY*speed;
     card.style.transform = `translateY(${offset}px) rotateY(10deg)`;
   });
-  // Back-to-top
-  const topBtn = document.getElementById('topBtn');
-  topBtn.style.display = window.scrollY>200?'block':'none';
+  document.getElementById('topBtn').style.display = window.scrollY>200?'block':'none';
 });
 document.getElementById('topBtn').addEventListener('click',()=>{ window.scrollTo({top:0,behavior:'smooth'}); });
 
-// About fade
-const aboutText = document.getElementById('about-text');
-aboutText.style.opacity=0;
+// Fade in about
+const aboutText=document.getElementById('about-text'); aboutText.style.opacity=0;
 window.addEventListener('scroll',()=>{
   if(aboutText.getBoundingClientRect().top<window.innerHeight-100) aboutText.style.opacity=1;
 });
 
-// Particles
-const canvas=document.getElementById('bgCanvas'); const ctx=canvas.getContext('2d');
+// Canvas particles
+const canvas=document.getElementById('bgCanvas'), ctx=canvas.getContext('2d');
 canvas.width=window.innerWidth; canvas.height=window.innerHeight;
 let particles=[];
 for(let i=0;i<120;i++){ particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2+1,dx:(Math.random()-0.5)*0.5,dy:(Math.random()-0.5)*0.5}); }
-function animateParticles(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  particles.forEach(p=>{
-    ctx.beginPath();
-    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-    ctx.fillStyle="rgba(187,134,252,0.7)";
-    ctx.fill();
-    p.x+=p.dx; p.y+=p.dy;
-    if(p.x>canvas.width)p.x=0; if(p.x<0)p.x=canvas.width;
-    if(p.y>canvas.height)p.y=0; if(p.y<0)p.y=canvas.height;
-  });
-  requestAnimationFrame(animateParticles);
-}
+function animateParticles(){ ctx.clearRect(0,0,canvas.width,canvas.height); particles.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle="rgba(187,134,252,0.7)";ctx.fill();p.x+=p.dx;p.y+=p.dy;if(p.x>canvas.width)p.x=0;if(p.x<0)p.x=canvas.width;if(p.y>canvas.height)p.y=0;if(p.y<0)p.y=canvas.height;}); requestAnimationFrame(animateParticles);}
 animateParticles();
 window.addEventListener('resize',()=>{canvas.width=window.innerWidth; canvas.height=window.innerHeight;});
 
-// Theme switch
-const themeBtn = document.getElementById('themeBtn');
-let themeIndex = 4; // default
-themeBtn.addEventListener('click',()=>{
-  themeIndex++; if(themeIndex>4) themeIndex=1;
-  document.body.className = `theme${themeIndex}`;
-});
+// Смена темы
+const themeBtn=document.getElementById('themeBtn'); let themeIndex=4;
+themeBtn.addEventListener('click',()=>{ themeIndex++; if(themeIndex>4) themeIndex=1; document.body.className=`theme${themeIndex}`; });
