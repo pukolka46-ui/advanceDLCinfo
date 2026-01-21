@@ -1,38 +1,38 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* SCROLL TO SECTIONS */
+  // scroll buttons
   document.querySelectorAll("[data-scroll]").forEach(btn => {
     btn.addEventListener("click", () => {
-      const id = btn.getAttribute("data-scroll");
-      document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+      const id = btn.dataset.scroll;
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     });
   });
 
-  /* SUPPORT */
+  // support
   document.getElementById("supportBtn")?.addEventListener("click", () => {
-    alert("Поддержка скоро");
+    alert("Поддержка скоро будет доступна");
   });
 
-  /* THEME */
-  let dark = true;
+  // theme switch (wave <-> dark)
+  let wave = true;
   document.getElementById("themeBtn")?.addEventListener("click", () => {
-    dark = !dark;
-    document.body.style.background = dark
-      ? "linear-gradient(135deg, #050008, #0b0014, #14001f)"
-      : "linear-gradient(135deg, #0f2027, #203a43, #2c5364)";
+    document.body.style.animation = wave ? "none" : "waveBg 15s ease infinite";
+    document.body.style.background = wave
+      ? "#020014"
+      : "";
+    wave = !wave;
   });
 
-  /* SELECT PLAN */
+  // select plan
   document.querySelectorAll(".select").forEach(btn => {
     btn.addEventListener("click", () => {
-      alert("Покупка будет доступна позже");
+      alert("Покупка временно недоступна");
     });
   });
 
-  /* SCROLL ANIMATION */
-  const reveals = document.querySelectorAll(".reveal");
+  // scroll reveal
   const reveal = () => {
-    reveals.forEach(el => {
+    document.querySelectorAll(".reveal").forEach(el => {
       if (el.getBoundingClientRect().top < window.innerHeight - 100) {
         el.classList.add("active");
       }
@@ -40,5 +40,4 @@ document.addEventListener("DOMContentLoaded", () => {
   };
   window.addEventListener("scroll", reveal);
   reveal();
-
 });
