@@ -1,39 +1,28 @@
-document.addEventListener('DOMContentLoaded',()=>{
-
-  document.getElementById('supportBtn').onclick = ()=>alert('Поддержка скоро!');
-  document.getElementById('aboutBtn').onclick = ()=>document.getElementById('about').scrollIntoView({behavior:'smooth'});
-  document.getElementById('buyBtn').onclick = ()=>document.getElementById('plans').scrollIntoView({behavior:'smooth'});
-  document.getElementById('buyBtnHero').onclick = ()=>document.getElementById('plans').scrollIntoView({behavior:'smooth'});
-  document.getElementById('cabinetBtn').onclick = ()=>alert('Личный кабинет пока недоступен.');
-
-  // Смена темы
-  let themeIndex=1;
-  document.getElementById('themeBtn').onclick = ()=>{
-    themeIndex++;
-    if(themeIndex>4) themeIndex=1;
-    document.body.className=`theme${themeIndex}`;
-  }
-
-  // Typewriter
-  const heading=document.getElementById('heading');
-  const text=heading.textContent;
-  heading.textContent='';
-  let i=0;
-  function typeWriter(){if(i<text.length){heading.textContent+=text[i];i++;setTimeout(typeWriter,50);}}
-  typeWriter();
-
-  // Карточки тарифов
-  document.querySelectorAll('.buy-btn').forEach(btn=>btn.onclick=()=>alert('Выбран тариф!'));
-
-  // Back-to-top
-  const topBtn=document.getElementById('topBtn');
-  topBtn.onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
-  window.onscroll=()=>topBtn.style.display=window.scrollY>200?'block':'none';
-
-  // Статистика
-  function animateStat(id,target){let el=document.getElementById(id);let count=0;let step=Math.ceil(target/100);let interval=setInterval(()=>{count+=step;if(count>=target){count=target;clearInterval(interval);}el.textContent=count;},20);}
-  animateStat('stat-clients',100);
-  animateStat('stat-purchases',50);
-  animateStat('stat-trust',20);
-
+// Плавный скролл
+document.querySelectorAll('[data-scroll]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const id = btn.getAttribute('data-scroll');
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+  });
 });
+
+// Кнопки тарифов
+document.querySelectorAll('.select').forEach(btn => {
+  btn.addEventListener('click', () => {
+    alert('Тариф выбран (Soon)');
+  });
+});
+
+// Смена темы (реально работает)
+let dark = true;
+document.getElementById('themeBtn').onclick = () => {
+  dark = !dark;
+  document.body.style.background = dark
+    ? 'linear-gradient(135deg, #1a0033, #3b0066, #7a00cc)'
+    : 'linear-gradient(135deg, #0f2027, #203a43, #2c5364)';
+};
+
+// Поддержка
+document.getElementById('supportBtn').onclick = () => {
+  alert('Поддержка скоро будет доступна');
+};
