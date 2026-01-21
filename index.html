@@ -1,50 +1,10 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AdvanceLoaderV3</title>
-<style>
-  /* --- Reset и базовые стили --- */
-  * { margin:0; padding:0; box-sizing:border-box; font-family: 'Arial', sans-serif; }
-  body { background:#0d0d0d; color:#fff; line-height:1.5; }
-  a { text-decoration:none; color:inherit; }
-
-  /* --- Header --- */
-  header { display:flex; justify-content:space-between; align-items:center; padding:20px 50px; background:#111; position:sticky; top:0; z-index:100; }
-  .nav-left, .nav-center, .nav-right { display:flex; gap:20px; align-items:center; }
-  .nav-left span { font-size:0.8rem; color:#f39c12; margin-left:5px; }
-  button { background:#222; color:#fff; border:none; padding:10px 20px; cursor:pointer; border-radius:5px; transition:0.3s; }
-  button:hover { background:#f39c12; color:#111; }
-
-  /* --- Hero / Heading --- */
-  #heading { text-align:center; margin:50px 20px 20px; font-size:2rem; }
-
-  /* --- Card Section --- */
-  #plans { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; padding:50px 20px; scroll-margin-top:80px; }
-  .card { background:#111; padding:30px 20px; border-radius:15px; width:220px; text-align:center; border:2px solid #222; transition:0.3s; position:relative; }
-  .card.highlight { border-color:#f39c12; box-shadow:0 0 15px #f39c12; }
-  .card h3 { margin-bottom:15px; font-size:1.2rem; }
-  .price { font-size:1.5rem; margin-bottom:15px; color:#f39c12; }
-  .soon { font-size:0.8rem; color:#f39c12; display:block; margin-bottom:10px; }
-  .card button { width:100%; }
-
-  /* --- About Section --- */
-  #about { padding:50px 20px; text-align:center; max-width:800px; margin:0 auto; }
-  #about p { margin-top:20px; }
-
-  /* --- Stats Section --- */
-  #stats { display:flex; justify-content:center; gap:50px; padding:50px 20px; background:#111; }
-  .stat { text-align:center; }
-  .stat h3 { font-size:2rem; color:#f39c12; }
-  .stat p { margin-top:5px; font-size:1rem; }
-
-  /* --- Footer --- */
-  footer { text-align:center; padding:20px; background:#111; font-size:0.8rem; color:#888; }
-
-  /* --- Scroll smooth --- */
-  html { scroll-behavior: smooth; }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -53,93 +13,70 @@
     <button>Поддержка</button><span>Soon</span>
   </div>
   <div class="nav-center">
-    <button onclick="document.getElementById('about').scrollIntoView()">О нас</button>
-    <button onclick="document.getElementById('plans').scrollIntoView()">Купить</button>
+    <button onclick="scrollToSection('about')">О нас</button>
+    <button onclick="scrollToSection('plans')">Купить</button>
   </div>
   <div class="nav-right">
     <button>Личный кабинет</button>
   </div>
 </header>
 
-<h1 id="heading">AdvanceLoaderV3 online 🚀</h1>
+<main>
+  <h1 id="heading">AdvanceLoaderV3 online 🚀</h1>
 
-<section id="about">
-  <p>
-    Наш проект AdvanceDLC имеет три проекта которые пока не сделаны полностью, но вскоре мы изменим нашу судьбу и станем продавать! AdvanceDLC это не просто слова. Это значение мощи и преимущества! Вас буду ждать AdvanceLoader, AdvanceDLC, AdvanceVisuals и это только у нас, следите за нами и спасибо что с нами. Нам доверяют.
-  </p>
-</section>
+  <section id="about">
+    <p>
+      Наш проект AdvanceDLC имеет три проекта которые пока не сделаны полностью, но вскоре мы изменим нашу судьбу и станем продавать! AdvanceDLC это не просто слова. Это значение мощи и преимущества! Вас буду ждать AdvanceLoader, AdvanceDLC, AdvanceVisuals и это только у нас, следите за нами и спасибо что с нами. Нам доверяют.
+    </p>
+  </section>
 
-<section id="plans">
-  <div class="card">
-    <h3>30 Day</h3>
-    <span class="soon">Soon</span>
-    <div class="price">₽250</div>
-    <button>Выбрать</button>
-  </div>
-  <div class="card highlight">
-    <h3>60 Day</h3>
-    <span class="soon">Soon</span>
-    <div class="price">₽350</div>
-    <button>Выбрать</button>
-  </div>
-  <div class="card">
-    <h3>90 Day</h3>
-    <span class="soon">Soon</span>
-    <div class="price">₽500</div>
-    <button>Выбрать</button>
-  </div>
-  <div class="card">
-    <h3>Forever</h3>
-    <span class="soon">BETA (Soon)</span>
-    <div class="price">₽600</div>
-    <button>Выбрать</button>
-  </div>
-</section>
+  <section id="plans">
+    <div class="card">
+      <h3>30 Day</h3>
+      <span class="soon">Soon</span>
+      <div class="price">₽250</div>
+      <button class="buy-btn">Выбрать</button>
+    </div>
+    <div class="card highlight">
+      <h3>60 Day</h3>
+      <span class="soon">Soon</span>
+      <div class="price">₽350</div>
+      <button class="buy-btn">Выбрать</button>
+    </div>
+    <div class="card">
+      <h3>90 Day</h3>
+      <span class="soon">Soon</span>
+      <div class="price">₽500</div>
+      <button class="buy-btn">Выбрать</button>
+    </div>
+    <div class="card">
+      <h3>Forever</h3>
+      <span class="soon">BETA (Soon)</span>
+      <div class="price">₽600</div>
+      <button class="buy-btn">Выбрать</button>
+    </div>
+  </section>
 
-<section id="stats">
-  <div class="stat">
-    <h3 id="stat-clients">0</h3>
-    <p>Запусков клиента</p>
-  </div>
-  <div class="stat">
-    <h3 id="stat-purchases">0</h3>
-    <p>Покупок</p>
-  </div>
-  <div class="stat">
-    <h3 id="stat-trust">0</h3>
-    <p>Нам доверяют</p>
-  </div>
-</section>
+  <section id="stats">
+    <div class="stat">
+      <h3 id="stat-clients">0</h3>
+      <p>Запусков клиента</p>
+    </div>
+    <div class="stat">
+      <h3 id="stat-purchases">0</h3>
+      <p>Покупок</p>
+    </div>
+    <div class="stat">
+      <h3 id="stat-trust">0</h3>
+      <p>Нам доверяют</p>
+    </div>
+  </section>
+</main>
 
 <footer>
   &copy; 2026 AdvanceLoaderV3
 </footer>
 
-<script>
-  // --- Fetch /message on load ---
-  fetch('/message')
-    .then(resp => resp.text())
-    .then(text => document.getElementById('heading').textContent = text);
-
-  // --- Fetch /random on button click ---
-  document.querySelectorAll('#plans button').forEach(btn=>{
-    btn.addEventListener('click',()=>alert('Выбран тариф!'));
-  });
-
-  // --- Animate stats (count up) ---
-  function animateStat(id, target){
-    let el = document.getElementById(id), count = 0;
-    let step = Math.ceil(target / 100);
-    let interval = setInterval(()=>{
-      count += step;
-      if(count >= target){ count = target; clearInterval(interval);}
-      el.textContent = count;
-    },20);
-  }
-  animateStat('stat-clients', 0);
-  animateStat('stat-purchases', 0);
-  animateStat('stat-trust', 0);
-</script>
-
+<script src="ui.js"></script>
 </body>
 </html>
